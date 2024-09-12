@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class CollaboratorEconomics implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_collaborator_economics", length = 20, nullable = true)
     private Long idCollaboratorEconomics;
 
