@@ -26,7 +26,13 @@
 		<tag/>
 		<url/>
 	</scm>
-
+	<repositories>
+		<!-- ... -->
+		<repository>
+			<id>shibboleth-releases</id>
+			<url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<!-- Spring Boot Dependencies -->
 		<dependency>
@@ -50,6 +56,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-graphql</artifactId>
+		</dependency>
+		<!-- Spring Security Starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Spring Security SAML -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-saml2-service-provider</artifactId>
 		</dependency>
 	
 		<!-- For parsing LocalDateTime (Java 17 and above) -->
