@@ -1,4 +1,7 @@
 package com.example.demo.repository;
 
-public interface ExternalPartnerRepository extends org.springframework.data.jpa.repository.JpaRepository<com.example.demo.model.ExternalPartner, java.lang.Long> {
-  }
+import com.example.demo.model.ExternalPartner;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ExternalPartnerRepository extends JpaRepository<ExternalPartner, Long> {
+}

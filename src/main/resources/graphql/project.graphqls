@@ -1,0 +1,29 @@
+type Project {
+    idProject: ID!
+    title: String!
+    projectGroup: ProjectGroup!
+    notes: String
+    active: Boolean!
+}
+
+input ProjectInput {
+    idProject: ID
+    title: String!
+    idProjectGroup: ID!
+    notes: String
+    active: Boolean
+}
+
+extend type Query {
+    allProject: [Project]
+    project(idProject: ID!): Project
+}
+
+extend type Mutation {
+    createProject(project: ProjectInput!): Project
+    updateProject(project: ProjectInput!): Project
+    deleteProject(idProject: ID!): DeleteResponse
+}
+
+
+

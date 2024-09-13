@@ -10,9 +10,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CollaboratorRepository extends JpaRepository<Collaborator, String> {
+public interface CollaboratorRepository extends JpaRepository<Collaborator, Long> {
 
     @Query("SELECT c FROM Collaborator c JOIN CollaboratorEconomics ce ON c.idCollaborator = ce.collaborator.idCollaborator WHERE ce.level = :level AND ce.ral < :ral")
     List<Collaborator> findCollaboratorsByEconomicsCriteria(@Param("level") String level, @Param("ral") float ral);
-    
+
 }

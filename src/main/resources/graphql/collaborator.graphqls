@@ -1,0 +1,35 @@
+type Collaborator {
+    idCollaborator: ID!
+    code: String
+    name: String!
+    surname: String!
+    dateOfBirth: Date!
+    hiringDate: Date!
+    address: String
+    phone: String
+    notes: String
+    collaboratorEconomics: [CollaboratorEconomics]
+}
+
+input CollaboratorInput {
+    idCollaborator: ID
+    code: String
+    name: String!
+    surname: String!
+    dateOfBirth: Date!
+    hiringDate: Date!
+    address: String
+    phone: String
+    notes: String
+}
+
+extend type Query {
+    collaborator(idCollaborator: ID!): Collaborator
+    allCollaborators: [Collaborator]
+}
+
+extend type Mutation {
+    createCollaborator(collaborator: CollaboratorInput!): Collaborator
+    updateCollaborator(collaborator: CollaboratorInput!): Collaborator
+    deleteCollaborator(idCollaborator: ID!): DeleteResponse
+}

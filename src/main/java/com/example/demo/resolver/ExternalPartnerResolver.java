@@ -1,11 +1,8 @@
 package com.example.demo.resolver;
 
 import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.PartnerProject;
-import com.example.demo.model.PartnerProjectId;
-import com.example.demo.model.Project;
-import com.example.demo.repository.PartnerProjectRepository;
-import com.example.demo.repository.ProjectRepository;
+import com.example.demo.model.ExternalPartner;
+import com.example.demo.repository.ExternalPartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -15,39 +12,39 @@ import org.springframework.stereotype.Controller;
 import java.util.Optional;
 
 @Controller
-public class PartnerProjectResolver {
-    private final PartnerProjectRepository projectRepository;
+public class ExternalPartnerResolver {
+    private final ExternalPartnerRepository externalPartnerRepository;
 
     @Autowired
-    public PartnerProjectResolver(PartnerProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    public ExternalPartnerResolver(ExternalPartnerRepository externalPartnerRepository) {
+        this.externalPartnerRepository = externalPartnerRepository;
     }
 
     @QueryMapping
-    public Iterable<PartnerProject> allPartnerProject() {
-        return projectRepository.findAll();
+    public Iterable<ExternalPartner> allExternalPartner() {
+        return externalPartnerRepository.findAll();
     }
 
     @QueryMapping
-    public PartnerProject partnerProject(@Argument PartnerProjectId idPartnerProject) {
-        Optional<PartnerProject> project = projectRepository.findById(idPartnerProject);
+    public ExternalPartner externalPartner(@Argument Long idExternalPartner) {
+        Optional<ExternalPartner> project = externalPartnerRepository.findById(idExternalPartner);
         return project.orElse(null);
     }
 
     @MutationMapping
-    public PartnerProject createPartnerProject(@Argument PartnerProject partnerProject) {
-        return projectRepository.save(partnerProject);
+    public ExternalPartner createExternalPartner(@Argument ExternalPartner externalPartner) {
+        return externalPartnerRepository.save(externalPartner);
     }
 
     @MutationMapping
-    public PartnerProject updatePartnerProject(@Argument PartnerProject partnerProject) {
-        return projectRepository.save(partnerProject);
+    public ExternalPartner updateExternalPartner(@Argument ExternalPartner externalPartner) {
+        return externalPartnerRepository.save(externalPartner);
     }
 
     @MutationMapping
-    public DeleteResponse deletePartnerProject(@Argument PartnerProjectId idPartnerProject) {
-        if (projectRepository.existsById(idPartnerProject)) {
-            projectRepository.deleteById(idPartnerProject);
+    public DeleteResponse deleteExternalPartner(@Argument Long idExternalPartner) {
+        if (externalPartnerRepository.existsById(idExternalPartner)) {
+            externalPartnerRepository.deleteById(idExternalPartner);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Partner project not found");

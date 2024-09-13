@@ -2,12 +2,17 @@ package com.example.demo.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class DeleteResponse {
-    private String status;
+    private Boolean ok;
     private String message;
+
+    public DeleteResponse(Boolean ok) {
+        this.ok = ok;
+    }
 }

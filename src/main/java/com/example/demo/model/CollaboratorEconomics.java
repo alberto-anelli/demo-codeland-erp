@@ -1,20 +1,29 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "COLLABORATOR_ECONOMICS")
 public class CollaboratorEconomics implements Serializable {
 
+    // Getters and Setters
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_collaborator_economics", length = 20, nullable = true)
     private Long idCollaboratorEconomics;
 
     @ManyToOne
-    @JoinColumn(name = "id_collaborator", referencedColumnName = "id_collaborator", nullable = false)
+    @JoinColumn(name = "id_collaborator", nullable = false, insertable=false, updatable=false)
     private Collaborator collaborator;
+
+    @Column(name = "id_collaborator")
+    private Long idCollaborator;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "job_role", nullable = false)
@@ -37,7 +46,9 @@ public class CollaboratorEconomics implements Serializable {
 
     @Column(name = "notes", length = 250)
     private String notes;
+
     public CollaboratorEconomics(){}
+
     public CollaboratorEconomics(Collaborator collaborator, JobRole jobRole,
             String level, float ral, float ticket, float fixedPrize, float expectedExtraPrize, String notes) {
         this.collaborator = collaborator;
@@ -50,76 +61,4 @@ public class CollaboratorEconomics implements Serializable {
         this.notes = notes;
     }
 
-    // Getters and Setters
-    public Long getIdCollaboratorEconomics() {
-        return idCollaboratorEconomics;
-    }
-
-    public void setIdCollaboratorEconomics(Long idCollaboratorEconomics) {
-        this.idCollaboratorEconomics = idCollaboratorEconomics;
-    }
-
-    public Collaborator getCollaborator() {
-        return collaborator;
-    }
-
-    public void setCollaborator(Collaborator collaborator) {
-        this.collaborator = collaborator;
-    }
-
-    public JobRole getJobRole() {
-        return jobRole;
-    }
-
-    public void setJobRole(JobRole jobRole) {
-        this.jobRole = jobRole;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public float getRal() {
-        return ral;
-    }
-
-    public void setRal(float ral) {
-        this.ral = ral;
-    }
-
-    public float getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(float ticket) {
-        this.ticket = ticket;
-    }
-
-    public float getFixedPrize() {
-        return fixedPrize;
-    }
-
-    public void setFixedPrize(float fixedPrize) {
-        this.fixedPrize = fixedPrize;
-    }
-
-    public float getExpectedExtraPrize() {
-        return expectedExtraPrize;
-    }
-
-    public void setExpectedExtraPrize(float expectedExtraPrize) {
-        this.expectedExtraPrize = expectedExtraPrize;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }

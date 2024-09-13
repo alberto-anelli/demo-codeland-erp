@@ -1,103 +1,14 @@
-type ProjectGroupYearEstimation {
-    year: Int!
-    projectGroup: ProjectGroup!
-    turnover: Float!
-    ebit: Float!
-    notes: String
+scalar Date
+
+type DeleteResponse {
+    ok: Boolean!
+    message: String
 }
-
-type ProjectGroup {
-    idProjectGroup: ID!
-    title: String!
-    notes: String!
-}
-
-type Project {
-    idProject: ID!
-    title: String!
-    projectGroup: ProjectGroup!
-    notes: String
-}
-
-type Collaborator {
-    idCollaborator: ID!
-    code: String
-    name: String!
-    surname: String!
-    dateOfBirth: String!
-    hiringDate: String!
-    address: String
-    phone: String
-    notes: String
-}
-
-
-type CollaboratorEconomics {
-    idCollaboratorEconomics: ID!
-    collaborator: Collaborator!
-    jobRole: JobRole!
-    level: String
-    ral: Float!
-    ticket: Float!
-    fixedPrize: Float!
-    expectedExtraPrize: Float!
-    notes: String
-}
-
-
-enum JobRole {
-    DEVELOPER
-    MANAGER
-    ANALYST
-    DESIGNER
-    TESTER
-    # Add other roles as needed
-}
-
 
 type Query {
-    allProjectGroup: [ProjectGroup]
-    collaborator(idCollaborator: ID!): Collaborator
-    allCollaborators: [Collaborator]
-    collaboratorEconomics(id: String!): CollaboratorEconomics
-    allCollaboratorEconomics: [CollaboratorEconomics!]!
-    collaboratorsByEconomicsCriteria(level: String!, ralBelow: Float!): [Collaborator]
+
 }
 
 type Mutation {
 
-    createCollaborator(code: String, name: String!, surname: String!,
-                       dateOfBirth: String!, hiringDate: String!, address: String,
-                       email: String, phone: String, notes: String): Collaborator
-
-    updateCollaborator(idCollaborator: ID!, code: String, name: String!, surname: String!,
-                       dateOfBirth: String!, hiringDate: String!, address: String,
-                       email: String, phone: String, notes: String): Collaborator
-
-    deleteCollaborator(idCollaborator: ID!): Boolean
-
-    createCollaboratorEconomics(
-        idCollaborator: String!
-        jobRole: JobRole!
-        level: String
-        ral: Float!
-        ticket: Float!
-        fixedPrize: Float!
-        expectedExtraPrize: Float!
-        notes: String
-    ): CollaboratorEconomics
-
-    updateCollaboratorEconomics(
-        idCollaboratorEconomics: String!
-        idCollaborator: String
-        jobRole: JobRole
-        level: String
-        ral: Float
-        ticket: Float
-        fixedPrize: Float
-        expectedExtraPrize: Float
-        notes: String
-    ): CollaboratorEconomics
-
-    deleteCollaboratorEconomics(idCollaboratorEconomics: String!): Boolean
 }

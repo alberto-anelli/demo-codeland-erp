@@ -17,15 +17,16 @@ import java.util.Optional;
 @Controller
 public class CollaboratorEconomicsResolver {
 
-    @Autowired
-    private CollaboratorEconomicsRepository collaboratorEconomicsRepository;
+    private final CollaboratorEconomicsRepository collaboratorEconomicsRepository;
 
     @Autowired
-    private CollaboratorRepository collaboratorRepository;
+    public CollaboratorEconomicsResolver(CollaboratorEconomicsRepository collaboratorEconomicsRepository) {
+        this.collaboratorEconomicsRepository = collaboratorEconomicsRepository;
+    }
 
     // Resolver for getting a single CollaboratorEconomics by ID
     @QueryMapping
-    public CollaboratorEconomics collaboratorEconomics(@Argument String id) {
+    public CollaboratorEconomics collaboratorEconomics(@Argument Long id) {
         return collaboratorEconomicsRepository.findById(id).orElse(null);
     }
 
@@ -38,77 +39,19 @@ public class CollaboratorEconomicsResolver {
     // Mutation for creating a new CollaboratorEconomics
     @MutationMapping
     public CollaboratorEconomics createCollaboratorEconomics(
-            @Argument String idCollaborator,
-            @Argument String jobRole,
-            @Argument String level,
-            @Argument Float ral,
-            @Argument Float ticket,
-            @Argument Float fixedPrize,
-            @Argument Float expectedExtraPrize,
-            @Argument String notes) {
-
-        Collaborator collaborator = collaboratorRepository.findById(idCollaborator).orElseThrow(() -> new RuntimeException("Collaborator not found"));
-        CollaboratorEconomics collaboratorEconomics = new CollaboratorEconomics(
-                collaborator,
-                JobRole.valueOf(jobRole),
-                level,
-                ral,
-                ticket,
-                fixedPrize,
-                expectedExtraPrize,
-                notes
-        );
-
+            @Argument CollaboratorEconomics collaboratorEconomics) {
         return collaboratorEconomicsRepository.save(collaboratorEconomics);
     }
 
     // Mutation for updating an existing CollaboratorEconomics
     @MutationMapping
-    public CollaboratorEconomics updateCollaboratorEconomics(
-            @Argument String idCollaboratorEconomics,
-            @Argument String idCollaborator,
-            @Argument String jobRole,
-            @Argument String level,
-            @Argument Float ral,
-            @Argument Float ticket,
-            @Argument Float fixedPrize,
-            @Argument Float expectedExtraPrize,
-            @Argument String notes) {
-
-        CollaboratorEconomics collaboratorEconomics = collaboratorEconomicsRepository.findById(idCollaboratorEconomics).orElseThrow(() -> new RuntimeException("CollaboratorEconomics not found"));
-
-        if (idCollaborator != null) {
-            Collaborator collaborator = collaboratorRepository.findById(idCollaborator).orElseThrow(() -> new RuntimeException("Collaborator not found"));
-            collaboratorEconomics.setCollaborator(collaborator);
-        }
-        if (jobRole != null) {
-            collaboratorEconomics.setJobRole(JobRole.valueOf(jobRole));
-        }
-        if (level != null) {
-            collaboratorEconomics.setLevel(level);
-        }
-        if (ral != null) {
-            collaboratorEconomics.setRal(ral);
-        }
-        if (ticket != null) {
-            collaboratorEconomics.setTicket(ticket);
-        }
-        if (fixedPrize != null) {
-            collaboratorEconomics.setFixedPrize(fixedPrize);
-        }
-        if (expectedExtraPrize != null) {
-            collaboratorEconomics.setExpectedExtraPrize(expectedExtraPrize);
-        }
-        if (notes != null) {
-            collaboratorEconomics.setNotes(notes);
-        }
-
+    public CollaboratorEconomics updateCollaboratorEconomics(@Argument CollaboratorEconomics collaboratorEconomics) {
         return collaboratorEconomicsRepository.save(collaboratorEconomics);
     }
 
     // Mutation for deleting an existing CollaboratorEconomics
     @MutationMapping
-    public Boolean deleteCollaboratorEconomics(@Argument String idCollaboratorEconomics) {
+    public Boolean deleteCollaboratorEconomics(@Argument Long idCollaboratorEconomics) {
         Optional<CollaboratorEconomics> collaboratorEconomics = collaboratorEconomicsRepository.findById(idCollaboratorEconomics);
         if (collaboratorEconomics.isPresent()) {
             collaboratorEconomicsRepository.delete(collaboratorEconomics.get());

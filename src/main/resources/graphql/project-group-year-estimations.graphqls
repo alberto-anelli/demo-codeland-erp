@@ -1,0 +1,31 @@
+type ProjectGroupYearEstimation {
+    year: Int!
+    projectGroup: ProjectGroup!
+    turnover: Float!
+    ebit: Float!
+    notes: String
+}
+
+input ProjectGroupYearEstimationId {
+    idProjectGroup: ID!
+    year: Int!
+}
+
+input ProjectGroupYearEstimationInput {
+    year: Int!
+    idProjectGroup: ID!
+    turnover: Float!
+    ebit: Float!
+    notes: String
+}
+
+extend type Query {
+    allProjectGroupYearEstimation: [ProjectGroupYearEstimation]
+    projectGroupYearEstimation(idProjectGroupTearEstimation: ProjectGroupYearEstimationId!): ProjectGroupYearEstimation
+}
+
+extend type Mutation {
+    createProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
+    updateProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
+    deleteProjectGroupYearEstimation(idProjectGroupYearEstimation: ProjectGroupYearEstimationId!): DeleteResponse
+}

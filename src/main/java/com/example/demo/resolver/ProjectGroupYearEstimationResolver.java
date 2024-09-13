@@ -1,7 +1,11 @@
 package com.example.demo.resolver;
 
+import com.example.demo.bean.DeleteResponse;
 import com.example.demo.model.ProjectGroup;
+import com.example.demo.model.ProjectGroupYearEstimation;
+import com.example.demo.model.ProjectGroupYearEstimationId;
 import com.example.demo.repository.ProjectGroupRepository;
+import com.example.demo.repository.ProjectGroupYearEstimationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -11,42 +15,42 @@ import org.springframework.stereotype.Controller;
 import java.util.Optional;
 
 @Controller
-public class ProjectGroupResolver {
-    private final ProjectGroupRepository projectGroupRepository;
+public class ProjectGroupYearEstimationResolver {
+    private final ProjectGroupYearEstimationRepository projectGroupYearEstimationRepository;
 
     @Autowired
-    public ProjectGroupResolver(ProjectGroupRepository projectGroupRepository) {
-        this.projectGroupRepository = projectGroupRepository;
+    public ProjectGroupYearEstimationResolver(ProjectGroupYearEstimationRepository projectGroupYearEstimationRepository) {
+        this.projectGroupYearEstimationRepository = projectGroupYearEstimationRepository;
     }
 
     @QueryMapping
-    public Iterable<ProjectGroup> allProjectGroup() {
-        return projectGroupRepository.findAll();
+    public Iterable<ProjectGroupYearEstimation> allProjectGroupYearEstimation() {
+        return projectGroupYearEstimationRepository.findAll();
     }
 
     @QueryMapping
-    public ProjectGroup projectGroup(@Argument Long idProjectGroup) {
-        Optional<ProjectGroup> projectGroup = projectGroupRepository.findById(idProjectGroup);
+    public ProjectGroupYearEstimation projectGroupYearEstimation(@Argument ProjectGroupYearEstimationId idProjectGroupTearEstimation) {
+        Optional<ProjectGroupYearEstimation> projectGroup = projectGroupYearEstimationRepository.findById(idProjectGroupTearEstimation);
         return projectGroup.orElse(null);
     }
 
     @MutationMapping
-    public ProjectGroup createProjectGroup(@Argument ProjectGroup projectGroup) {
-        return projectGroupRepository.save(projectGroup);
+    public ProjectGroupYearEstimation createProjectGroupYearEstimation(@Argument ProjectGroupYearEstimation projectGroupYearEstimation) {
+        return projectGroupYearEstimationRepository.save(projectGroupYearEstimation);
     }
 
     @MutationMapping
-    public ProjectGroup updateProjectGroup(@Argument ProjectGroup projectGroup) {
-        return projectGroupRepository.save(projectGroup);
+    public ProjectGroupYearEstimation updateProjectGroupYearEstimation(@Argument ProjectGroupYearEstimation projectGroupYearEstimation) {
+        return projectGroupYearEstimationRepository.save(projectGroupYearEstimation);
     }
 
     @MutationMapping
-    public Boolean deleteProjectGroup(@Argument Long idProjectGroup) {
-        if (projectGroupRepository.existsById(idProjectGroup)) {
-            projectGroupRepository.deleteById(idProjectGroup);
-            return true;
+    public DeleteResponse deleteProjectGroupYearEstimation(@Argument ProjectGroupYearEstimationId idProjectGroupYearEstimation) {
+        if (projectGroupYearEstimationRepository.existsById(idProjectGroupYearEstimation)) {
+            projectGroupYearEstimationRepository.deleteById(idProjectGroupYearEstimation);
+            return new DeleteResponse(true);
         } else {
-            throw new RuntimeException("Collaborator not found");
+            return new DeleteResponse(false, "Year Estimation not found");
         }
     }
 }

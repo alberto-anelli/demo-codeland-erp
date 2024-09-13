@@ -1,0 +1,40 @@
+type PartnerProject {
+    idProject: ID!
+    idPartner: ID!
+    month: String!
+    amount: Float!
+    description: String!
+    invoiceNr: String
+    paymentDate: String
+    notes: String
+    externalPartner: ExternalPartner!
+    project: Project!
+}
+
+input PartnerProjectId {
+    idProject: ID!
+    idPartner: ID!
+    month: String!
+}
+
+input PartnerProjectInput {
+    idProject: ID!
+    idPartner: ID!
+    month: String!
+    amount: Float!
+    description: String!
+    invoiceNr: String
+    paymentDate: String
+    notes: String
+}
+
+extend type Query {
+    allPartnerProject: [PartnerProject]
+    partnerProject(idPartnerProject: PartnerProjectId!): PartnerProject
+}
+
+extend type Mutation {
+    createPartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
+    updatePartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
+    deletePartnerProject(idPartnerProject: PartnerProjectId!): DeleteResponse
+}

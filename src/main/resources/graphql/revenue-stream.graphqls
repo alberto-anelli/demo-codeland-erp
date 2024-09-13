@@ -1,0 +1,30 @@
+type RevenueStream {
+    idRevenue: ID!
+    title: String!
+    description: String!
+    amount: Float!
+    days: Int
+    notes: String
+    project: Project!
+}
+
+input RevenueStreamInput {
+    idRevenue: ID
+    title: String!
+    description: String!
+    amount: Float!
+    days: Int
+    notes: String
+    idProject: ID!
+}
+
+extend type Query {
+    allRevenueStream: [RevenueStream]
+    revenueStream(idRevenueStream: ID!): RevenueStream
+}
+
+extend type Mutation {
+    createRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
+    updateRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
+    deleteRevenueStream(idRevenueStream: ID!): DeleteResponse
+}

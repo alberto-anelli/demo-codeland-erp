@@ -1,0 +1,40 @@
+type DayProjectTracking {
+    project: Project!
+    collaborator: Collaborator!
+    day: Date!
+    hours: Int
+    extraNoNight: Int
+    extraNight: Int
+    availability: Int
+    moreInfo: String
+    notes: String
+}
+
+input DayProjectTrackingInput {
+    idProject: ID!
+    idCollaborator: ID!
+    day: Date!
+    hours: Int
+    extraNoNight: Int
+    extraNight: Int
+    availability: Int
+    moreInfo: String
+    notes: String
+}
+
+input DayProjectTrackingId {
+    idProject: ID!
+    idCollaborator: ID!
+    day: String!
+}
+
+extend type Query {
+    allDayProjectTracking: [DayProjectTracking]
+    dayProjectTracking(idDayProjectTracking: DayProjectTrackingId!): DayProjectTracking
+}
+
+extend type Mutation {
+    createDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
+    updateDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
+    deleteDayProjectTracking(idDayProjectTracking: DayProjectTrackingId!): DeleteResponse
+}

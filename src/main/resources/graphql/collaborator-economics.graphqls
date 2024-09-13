@@ -1,0 +1,50 @@
+type CollaboratorEconomics {
+    idCollaboratorEconomics: ID!
+    idCollaborator: ID!
+    collaborator: Collaborator!
+    jobRole: JobRole!
+    level: String
+    ral: Float!
+    ticket: Float!
+    fixedPrize: Float!
+    expectedExtraPrize: Float!
+    notes: String
+}
+
+input CollaboratorEconomicsInput {
+    idCollaboratorEconomics: ID
+    idCollaborator: ID!
+    jobRole: JobRole!
+    level: String
+    ral: Float!
+    ticket: Float!
+    fixedPrize: Float!
+    expectedExtraPrize: Float!
+    notes: String
+}
+
+enum JobRole {
+    DEVELOPER
+    MANAGER
+    ANALYST
+    DESIGNER
+    TESTER
+    # Add other roles as needed
+}
+
+extend type Query {
+    collaboratorEconomics(id: String!): CollaboratorEconomics
+    allCollaboratorEconomics: [CollaboratorEconomics!]!
+    collaboratorsByEconomicsCriteria(level: String!, ralBelow: Float!): [Collaborator]
+}
+
+extend type Mutation {
+    createCollaboratorEconomics(
+        collaboratorEconomics: CollaboratorEconomicsInput!
+    ): CollaboratorEconomics
+    updateCollaboratorEconomics(
+        collaboratorEconomics: CollaboratorEconomicsInput!
+    ): CollaboratorEconomics
+    deleteCollaboratorEconomics(idCollaboratorEconomics: String!): DeleteResponse
+
+}

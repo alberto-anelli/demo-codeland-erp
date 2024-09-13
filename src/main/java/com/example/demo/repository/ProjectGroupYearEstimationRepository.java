@@ -1,4 +1,11 @@
 package com.example.demo.repository;
 
-public interface ProjectGroupYearEstimationRepository extends org.springframework.data.jpa.repository.JpaRepository<com.example.demo.model.ProjectGroupYearEstimation, com.example.demo.model.ProjectGroupYearEstimationId> {
-  }
+import com.example.demo.model.ProjectGroupYearEstimation;
+import com.example.demo.model.ProjectGroupYearEstimationId;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProjectGroupYearEstimationRepository extends JpaRepository<ProjectGroupYearEstimation, ProjectGroupYearEstimationId> {
+
+}

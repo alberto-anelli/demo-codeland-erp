@@ -1,0 +1,33 @@
+type ExternalPartner {
+    idPartner: ID!
+    title: String!
+    vat: String
+    address: String
+    sdi: String
+    phone: String
+    email: String
+    notes: String
+    partnerProjects: [PartnerProject]
+}
+
+input ExternalPartnerInput {
+    idPartner: ID
+    title: String!
+    vat: String
+    address: String
+    sdi: String
+    phone: String
+    email: String
+    notes: String
+}
+
+extend type Query {
+    allExternalPartner: [ExternalPartner]
+    externalPartner(idExternalPartner: ID!): ExternalPartner
+}
+
+extend type Mutation {
+    createExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
+    updateExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
+    deleteExternalPartner(idExternalPartner: ID!): DeleteResponse
+}

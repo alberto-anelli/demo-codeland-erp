@@ -1,0 +1,26 @@
+type ProjectGroup {
+    idProjectGroup: ID!
+    title: String!
+    notes: String!
+    active: Boolean!
+    projects: [Project]
+    estimations: [ProjectGroupYearEstimation]
+}
+
+input ProjectGroupInput {
+    idProjectGroup: ID
+    title: String!
+    notes: String!
+    active: Boolean
+}
+
+extend type Query {
+    allProjectGroup: [ProjectGroup]
+    projectGroup(idProjectGroup: ID!): ProjectGroup
+}
+
+extend type Mutation {
+    createProjectGroup(projectGroup: ProjectGroupInput!): ProjectGroup
+    updateProjectGroup(projectGroup: ProjectGroupInput!): ProjectGroup
+    deleteProjectGroup(idProjectGroup: ID!): DeleteResponse
+}

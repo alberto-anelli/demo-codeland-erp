@@ -1,7 +1,10 @@
 package com.example.demo.resolver;
 
+import com.example.demo.bean.DeleteResponse;
+import com.example.demo.model.Project;
 import com.example.demo.model.ProjectGroup;
 import com.example.demo.repository.ProjectGroupRepository;
+import com.example.demo.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -11,42 +14,41 @@ import org.springframework.stereotype.Controller;
 import java.util.Optional;
 
 @Controller
-public class ProjectGroupResolver {
-    private final ProjectGroupRepository projectGroupRepository;
+public class ProjectResolver {
+    private final ProjectRepository projectRepository;
 
     @Autowired
-    public ProjectGroupResolver(ProjectGroupRepository projectGroupRepository) {
-        this.projectGroupRepository = projectGroupRepository;
+    public ProjectResolver(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
     }
 
     @QueryMapping
-    public Iterable<ProjectGroup> allProjectGroup() {
-        return projectGroupRepository.findAll();
+    public Iterable<Project> allProject() {
+        return projectRepository.findAll();
     }
 
     @QueryMapping
-    public ProjectGroup projectGroup(@Argument Long idProjectGroup) {
-        Optional<ProjectGroup> projectGroup = projectGroupRepository.findById(idProjectGroup);
-        return projectGroup.orElse(null);
+    public Project project(@Argument Long idProject) {
+        Optional<Project> project = projectRepository.findById(idProject);
+        return project.orElse(null);
     }
 
     @MutationMapping
-    public ProjectGroup createProjectGroup(@Argument ProjectGroup projectGroup) {
-        return projectGroupRepository.save(projectGroup);
+    public Project createProject(@Argument Project project) {
+        return projectRepository.save(project);
     }
 
     @MutationMapping
-    public ProjectGroup updateProjectGroup(@Argument ProjectGroup projectGroup) {
-        return projectGroupRepository.save(projectGroup);
+    public Project updateProject(@Argument Project project) {
+        return projectRepository.save(project);
     }
 
     @MutationMapping
-    public Boolean deleteProjectGroup(@Argument Long idProjectGroup) {
-        if (projectGroupRepository.existsById(idProjectGroup)) {
-            projectGroupRepository.deleteById(idProjectGroup);
-            return true;
-        } else {
-            throw new RuntimeException("Collaborator not found");
+    public DeleteResponse deleteProject(@Argument Long idProject) {
+        if (projectRepository.existsById(idProject)) {
+            projectRepository.deleteById(idProject);
+            return new DeleteResponse(true);
         }
+        return new DeleteResponse(false, "Project not found");
     }
 }

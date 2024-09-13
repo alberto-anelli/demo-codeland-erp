@@ -3,10 +3,12 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
-public class PartnerProjectId {
+public class DayProjectTrackingId {
     private Long idProject;
-    private Long idPartner;
-    private String month;
+    private Long idCollaborator;
+    private LocalDate day;
 }
