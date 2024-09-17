@@ -1,10 +1,8 @@
 package com.example.demo.resolver;
 
 import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.Project;
-import com.example.demo.model.ProjectGroup;
-import com.example.demo.repository.ProjectGroupRepository;
-import com.example.demo.repository.ProjectRepository;
+import com.example.demo.model.ProjectGroupGenericCost;
+import com.example.demo.repository.ProjectGroupGenericCostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -14,42 +12,42 @@ import org.springframework.stereotype.Controller;
 import java.util.Optional;
 
 @Controller
-public class ProjectResolver {
-    private final ProjectRepository projectRepository;
+public class ProjectGroupGenericCostResolver {
+    private final ProjectGroupGenericCostRepository projectGroupGenericCostRepository;
 
     @Autowired
-    public ProjectResolver(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    public ProjectGroupGenericCostResolver(ProjectGroupGenericCostRepository projectGroupGenericCostRepository) {
+        this.projectGroupGenericCostRepository = projectGroupGenericCostRepository;
     }
 
     @QueryMapping
-    public Iterable<Project> allProject() {
-        return projectRepository.findAll();
+    public Iterable<ProjectGroupGenericCost> allProjectGroupGenericCost() {
+        return projectGroupGenericCostRepository.findAll();
     }
 
     @QueryMapping
-    public Project project(@Argument Long id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public ProjectGroupGenericCost projectGroupGenericCost(@Argument String id) {
+        Optional<ProjectGroupGenericCost> project = projectGroupGenericCostRepository.findById(id);
         return project.orElse(null);
     }
 
     @MutationMapping
-    public Project createProject(@Argument Project project) {
-        return projectRepository.save(project);
+    public ProjectGroupGenericCost createProjectGroupGenericCost(@Argument ProjectGroupGenericCost projectGroupGenericCost) {
+        return projectGroupGenericCostRepository.save(projectGroupGenericCost);
     }
 
     @MutationMapping
-    public Project updateProject(@Argument Project project) {
-        return projectRepository.save(project);
+    public ProjectGroupGenericCost updateProjectGroupGenericCost(@Argument ProjectGroupGenericCost projectGroupGenericCost) {
+        return projectGroupGenericCostRepository.save(projectGroupGenericCost);
     }
 
     @MutationMapping
-    public DeleteResponse deleteProject(@Argument Long id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public DeleteResponse deleteProjectGroupGenericCost(@Argument String id) {
+        Optional<ProjectGroupGenericCost> project = projectGroupGenericCostRepository.findById(id);
         if (project.isPresent()) {
-            projectRepository.deleteById(id);
+            projectGroupGenericCostRepository.deleteById(id);
             return new DeleteResponse(true);
         }
-        return new DeleteResponse(false, "Project not found");
+        return new DeleteResponse(false, "ProjectGroupGenericCost not found");
     }
 }

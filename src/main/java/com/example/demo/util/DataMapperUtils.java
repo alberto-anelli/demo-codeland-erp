@@ -17,23 +17,15 @@
  *
  */
 
-package it.zerouno.jpuzzle.util;
+package com.example.demo.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.TextNode;
-import it.zerouno.jpuzzle.domain.jpa.model.JPExtraFields;
-import it.zerouno.jpuzzle.domain.jpa.model.JPPhone;
-import it.zerouno.jpuzzle.domain.jpa.model.JPStandardEmail;
-import it.zerouno.jpuzzle.domain.jpa.model.subjects.JPAteco;
-import it.zerouno.jpuzzle.domain.jpa.model.subjects.JPPec;
-import it.zerouno.jpuzzle.dto.JPJsonDto;
-import it.zerouno.jpuzzle.dto.JPPatchAwareDto;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang3.ClassUtils;
-import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
@@ -58,12 +50,7 @@ public final class DataMapperUtils {
       Long.class,
       Float.class,
       Double.class,
-      Character.class,
-      JPPhone.class,
-      JPStandardEmail.class,
-      JPPec.class,
-      JPAteco.class
-      // FIXME check if @JsonCreator
+      Character.class
   ));
 
   /**
@@ -162,16 +149,8 @@ public final class DataMapperUtils {
 
     if (orig instanceof Map) {
       patchPropertiesFromMap(dest, orig, propertyPrefix, ignoreSet, prefixLength);
-    } else if (orig instanceof JPJsonDto) {
-      Map<String, Object> data = ((JPJsonDto) orig).getData();
-      patchPropertiesFromMap(dest, data, propertyPrefix, ignoreSet, prefixLength);
     } else if (orig instanceof JsonNode) {
       patchFromJsonNode(dest, orig, propertyPrefix, ignoreSet, prefixLength);
-    } else if (orig instanceof JPPatchAwareDto) {
-      if (patchSet == null) {
-        patchSet = ((JPPatchAwareDto) orig)._patchPropertySet();
-      }
-      patchFromBean(dest, orig, propertyPrefix, patchSet, ignoreSet, prefixLength);
     } else {
       patchFromBean(dest, orig, propertyPrefix, patchSet, ignoreSet, prefixLength);
     }
@@ -194,7 +173,7 @@ public final class DataMapperUtils {
     @SuppressWarnings("unchecked") final Map<String, Object> propMap = (Map<String, Object>) orig;
 
     boolean destAsMap = dest instanceof Map;
-    for (final Map.Entry<String, Object> entry : propMap.entrySet()) {
+    for (final Entry<String, Object> entry : propMap.entrySet()) {
 
       final String name = entry.getKey();
       final String nameToCheck = evalNameToCheck(name, propertyPrefix, prefixLength);
@@ -249,7 +228,8 @@ public final class DataMapperUtils {
 
         try {
           final Object value = PropertyUtils.getSimpleProperty(orig, name);
-          patchPropertyWithObject(dest, name, value, propertyPrefix, patchSet, ignoreSet);
+          if(value != null)
+            patchPropertyWithObject(dest, name, value, propertyPrefix, patchSet, ignoreSet);
         } catch (final Exception ex) {
           logger.error("patchProperties: error with bean {} on property {}", dest.getClass(), name, ex);
         }
@@ -455,9 +435,7 @@ public final class DataMapperUtils {
             || OffsetDateTime.class.isAssignableFrom(klass)
             || OffsetTime.class.isAssignableFrom(klass)
             || BigDecimal.class.isAssignableFrom(klass)
-            || BigInteger.class.isAssignableFrom(klass)
-            || ObjectId.class.isAssignableFrom(klass)
-            || JPExtraFields.class.isAssignableFrom(klass);
+            || BigInteger.class.isAssignableFrom(klass);
   }
 
   /**

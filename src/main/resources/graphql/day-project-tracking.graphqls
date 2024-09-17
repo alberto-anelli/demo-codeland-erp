@@ -30,11 +30,11 @@ input DayProjectTrackingId {
 
 extend type Query {
     allDayProjectTracking: [DayProjectTracking]
-    dayProjectTracking(idDayProjectTracking: DayProjectTrackingId!): DayProjectTracking
+    dayProjectTracking(id: DayProjectTrackingId!): DayProjectTracking
 }
 
 extend type Mutation {
     createDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
     updateDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
-    deleteDayProjectTracking(idDayProjectTracking: DayProjectTrackingId!): DeleteResponse
+    deleteDayProjectTracking(id: DayProjectTrackingId!): DeleteResponse
 }

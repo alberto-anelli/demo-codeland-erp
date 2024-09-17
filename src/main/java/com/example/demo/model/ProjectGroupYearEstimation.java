@@ -8,12 +8,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "project_group_year_estimation")
-@IdClass(ProjectGroupYearEstimationId.class)
-public class ProjectGroupYearEstimation {
+public class ProjectGroupYearEstimation extends ErpAuditableEntity<ProjectGroupYearEstimationId> {
 
-    @Id
-    @Column(name = "year")
-    private int year;
+    @EmbeddedId
+    private ProjectGroupYearEstimationId id;
 
     @Column(name = "turnover")
     private Float turnover;
@@ -21,14 +19,11 @@ public class ProjectGroupYearEstimation {
     @Column(name = "ebit")
     private Float ebit;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @ManyToOne
     @JoinColumn(name = "id_project_group", nullable = false, insertable = false, updatable = false)
     private ProjectGroup projectGroup;
 
-    @Id
-    @Column(name = "id_project_group")
-    private Long idProjectGroup;
 }

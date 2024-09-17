@@ -10,13 +10,13 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = "COLLABORATOR_ECONOMICS")
-public class CollaboratorEconomics implements Serializable {
+public class CollaboratorEconomics extends ErpAuditableEntity<Long> {
 
     // Getters and Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_collaborator_economics", length = 20, nullable = true)
-    private Long idCollaboratorEconomics;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_collaborator", nullable = false, insertable=false, updatable=false)
@@ -44,7 +44,7 @@ public class CollaboratorEconomics implements Serializable {
     @Column(name = "expected_extra_prize", nullable = false)
     private float expectedExtraPrize;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     public CollaboratorEconomics(){}

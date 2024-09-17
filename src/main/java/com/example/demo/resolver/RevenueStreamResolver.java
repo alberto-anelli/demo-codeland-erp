@@ -27,8 +27,8 @@ public class RevenueStreamResolver {
     }
 
     @QueryMapping
-    public RevenueStream revenueStream(@Argument Long idRevenueStream) {
-        return revenueStreamRepository.findById(idRevenueStream).orElse(null);
+    public RevenueStream revenueStream(@Argument Long id) {
+        return revenueStreamRepository.findById(id).orElse(null);
     }
 
     @MutationMapping
@@ -42,9 +42,10 @@ public class RevenueStreamResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deleteRevenueStream(@Argument Long idRevenueStream) {
-        if (revenueStreamRepository.existsById(idRevenueStream)) {
-            revenueStreamRepository.deleteById(idRevenueStream);
+    public DeleteResponse deleteRevenueStream(@Argument Long id) {
+        Optional<RevenueStream> revenueStream = revenueStreamRepository.findById(id);
+        if (revenueStream.isPresent()) {
+            revenueStreamRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Project not found");

@@ -29,8 +29,8 @@ public class PartnerProjectResolver {
     }
 
     @QueryMapping
-    public PartnerProject partnerProject(@Argument PartnerProjectId idPartnerProject) {
-        Optional<PartnerProject> project = projectRepository.findById(idPartnerProject);
+    public PartnerProject partnerProject(@Argument PartnerProjectId id) {
+        Optional<PartnerProject> project = projectRepository.findById(id);
         return project.orElse(null);
     }
 
@@ -45,9 +45,9 @@ public class PartnerProjectResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deletePartnerProject(@Argument PartnerProjectId idPartnerProject) {
-        if (projectRepository.existsById(idPartnerProject)) {
-            projectRepository.deleteById(idPartnerProject);
+    public DeleteResponse deletePartnerProject(@Argument PartnerProjectId id) {
+        if (projectRepository.existsById(id)) {
+            projectRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Partner project not found");

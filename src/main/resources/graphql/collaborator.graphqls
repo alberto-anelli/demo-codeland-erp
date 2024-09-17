@@ -1,5 +1,5 @@
 type Collaborator {
-    idCollaborator: ID!
+    id: ID!
     code: String
     name: String!
     surname: String!
@@ -12,7 +12,7 @@ type Collaborator {
 }
 
 input CollaboratorInput {
-    idCollaborator: ID
+    id: ID
     code: String
     name: String!
     surname: String!
@@ -24,12 +24,12 @@ input CollaboratorInput {
 }
 
 extend type Query {
-    collaborator(idCollaborator: ID!): Collaborator
+    collaborator(id: ID!): Collaborator
     allCollaborators: [Collaborator]
 }
 
 extend type Mutation {
     createCollaborator(collaborator: CollaboratorInput!): Collaborator
     updateCollaborator(collaborator: CollaboratorInput!): Collaborator
-    deleteCollaborator(idCollaborator: ID!): DeleteResponse
+    deleteCollaborator(id: ID!): DeleteResponse
 }

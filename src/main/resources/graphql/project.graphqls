@@ -1,5 +1,5 @@
 type Project {
-    idProject: ID!
+    id: ID!
     title: String!
     projectGroup: ProjectGroup!
     notes: String
@@ -7,7 +7,7 @@ type Project {
 }
 
 input ProjectInput {
-    idProject: ID
+    id: ID
     title: String!
     idProjectGroup: ID!
     notes: String
@@ -16,13 +16,13 @@ input ProjectInput {
 
 extend type Query {
     allProject: [Project]
-    project(idProject: ID!): Project
+    project(id: ID!): Project
 }
 
 extend type Mutation {
     createProject(project: ProjectInput!): Project
     updateProject(project: ProjectInput!): Project
-    deleteProject(idProject: ID!): DeleteResponse
+    deleteProject(id: ID!): DeleteResponse
 }
 
 

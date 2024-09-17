@@ -4,26 +4,27 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "project_group")
-public class ProjectGroup {
+public class ProjectGroup extends ErpAuditableEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_project_group", nullable = false)
-    private Long idProjectGroup;
+    private Long id;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "notes", nullable = false, length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @Column(name = "active")
-    private boolean active;
+    private Boolean active;
 
     @OneToMany(mappedBy = "projectGroup")
     private List<Project> projects;
@@ -31,4 +32,6 @@ public class ProjectGroup {
     @OneToMany(mappedBy = "projectGroup")
     private List<ProjectGroupYearEstimation> estimations;
 
+    @OneToMany(mappedBy = "projectGroup")
+    private List<ProjectGroupGenericCost> costs;
 }

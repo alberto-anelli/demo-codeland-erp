@@ -10,12 +10,12 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "external_partner")
-public class ExternalPartner {
+public class ExternalPartner extends ErpAuditableEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_partner", nullable = false)
-    private Long idPartner;
+    private Long id;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
@@ -32,10 +32,10 @@ public class ExternalPartner {
     @Column(name = "phone", length = 30)
     private String phone;
 
-    @Column(name = "email", length = 250)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @OneToMany(mappedBy = "externalPartner", fetch = FetchType.LAZY)

@@ -1,5 +1,5 @@
 type RevenueStream {
-    idRevenue: ID!
+    id: ID!
     title: String!
     description: String!
     amount: Float!
@@ -9,7 +9,7 @@ type RevenueStream {
 }
 
 input RevenueStreamInput {
-    idRevenue: ID
+    id: ID
     title: String!
     description: String!
     amount: Float!
@@ -20,11 +20,11 @@ input RevenueStreamInput {
 
 extend type Query {
     allRevenueStream: [RevenueStream]
-    revenueStream(idRevenueStream: ID!): RevenueStream
+    revenueStream(id: ID!): RevenueStream
 }
 
 extend type Mutation {
     createRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
     updateRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
-    deleteRevenueStream(idRevenueStream: ID!): DeleteResponse
+    deleteRevenueStream(id: ID!): DeleteResponse
 }

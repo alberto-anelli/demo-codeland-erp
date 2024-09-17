@@ -28,8 +28,8 @@ public class ProjectResolver {
     }
 
     @QueryMapping
-    public Project project(@Argument Long idProject) {
-        Optional<Project> project = projectRepository.findById(idProject);
+    public Project project(@Argument Long id) {
+        Optional<Project> project = projectRepository.findById(id);
         return project.orElse(null);
     }
 
@@ -44,9 +44,10 @@ public class ProjectResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deleteProject(@Argument Long idProject) {
-        if (projectRepository.existsById(idProject)) {
-            projectRepository.deleteById(idProject);
+    public DeleteResponse deleteProject(@Argument Long id) {
+        Optional<Project> project = projectRepository.findById(id);
+        if (project.isPresent()) {
+            projectRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Project not found");

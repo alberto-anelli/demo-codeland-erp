@@ -1,7 +1,7 @@
 type PartnerProject {
     idProject: ID!
     idPartner: ID!
-    month: String!
+    month: Month!
     amount: Float!
     description: String!
     invoiceNr: String
@@ -20,7 +20,7 @@ input PartnerProjectId {
 input PartnerProjectInput {
     idProject: ID!
     idPartner: ID!
-    month: String!
+    month: Month!
     amount: Float!
     description: String!
     invoiceNr: String
@@ -30,11 +30,11 @@ input PartnerProjectInput {
 
 extend type Query {
     allPartnerProject: [PartnerProject]
-    partnerProject(idPartnerProject: PartnerProjectId!): PartnerProject
+    partnerProject(id: PartnerProjectId!): PartnerProject
 }
 
 extend type Mutation {
     createPartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
     updatePartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
-    deletePartnerProject(idPartnerProject: PartnerProjectId!): DeleteResponse
+    deletePartnerProject(id: PartnerProjectId!): DeleteResponse
 }

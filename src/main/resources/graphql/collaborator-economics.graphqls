@@ -1,5 +1,5 @@
 type CollaboratorEconomics {
-    idCollaboratorEconomics: ID!
+    id: ID!
     idCollaborator: ID!
     collaborator: Collaborator!
     jobRole: JobRole!
@@ -12,7 +12,7 @@ type CollaboratorEconomics {
 }
 
 input CollaboratorEconomicsInput {
-    idCollaboratorEconomics: ID
+    id: ID
     idCollaborator: ID!
     jobRole: JobRole!
     level: String
@@ -45,6 +45,6 @@ extend type Mutation {
     updateCollaboratorEconomics(
         collaboratorEconomics: CollaboratorEconomicsInput!
     ): CollaboratorEconomics
-    deleteCollaboratorEconomics(idCollaboratorEconomics: String!): DeleteResponse
+    deleteCollaboratorEconomics(id: String!): DeleteResponse
 
 }

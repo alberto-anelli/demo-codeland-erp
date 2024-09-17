@@ -1,12 +1,17 @@
 package com.example.demo.resolver;
 
+import com.example.demo.bean.DeleteResponse;
+import com.example.demo.data.ErpPageData;
 import com.example.demo.model.ProjectGroup;
 import com.example.demo.repository.ProjectGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 
@@ -25,8 +30,13 @@ public class ProjectGroupResolver {
     }
 
     @QueryMapping
-    public ProjectGroup projectGroup(@Argument Long idProjectGroup) {
-        Optional<ProjectGroup> projectGroup = projectGroupRepository.findById(idProjectGroup);
+    public Iterable<ProjectGroup> activeProjectGroup() {
+        return projectGroupRepository.findProjectGroupByActive(Boolean.TRUE);
+    }
+
+    @QueryMapping
+    public ProjectGroup projectGroup(@Argument Long id) {
+        Optional<ProjectGroup> projectGroup = projectGroupRepository.findById(id);
         return projectGroup.orElse(null);
     }
 
@@ -41,12 +51,17 @@ public class ProjectGroupResolver {
     }
 
     @MutationMapping
-    public Boolean deleteProjectGroup(@Argument Long idProjectGroup) {
-        if (projectGroupRepository.existsById(idProjectGroup)) {
-            projectGroupRepository.deleteById(idProjectGroup);
-            return true;
-        } else {
-            throw new RuntimeException("Collaborator not found");
+    public ProjectGroup patchProjectGroup(@Argument ProjectGroup projectGroup) {
+        return projectGroupRepository.patchEntity(projectGroup.getId(), projectGroup);
+    }
+
+    @MutationMapping
+    public DeleteResponse deleteProjectGroup(@Argument Long id) {
+        Optional<ProjectGroup> projectGroup = projectGroupRepository.findById(id);
+        if (projectGroup.isPresent()) {
+            projectGroupRepository.deleteById(id);
+            return new DeleteResponse(true);
         }
+        return new DeleteResponse(false, "Project not found");
     }
 }

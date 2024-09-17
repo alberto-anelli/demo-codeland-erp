@@ -51,8 +51,8 @@ public class CollaboratorEconomicsResolver {
 
     // Mutation for deleting an existing CollaboratorEconomics
     @MutationMapping
-    public Boolean deleteCollaboratorEconomics(@Argument Long idCollaboratorEconomics) {
-        Optional<CollaboratorEconomics> collaboratorEconomics = collaboratorEconomicsRepository.findById(idCollaboratorEconomics);
+    public Boolean deleteCollaboratorEconomics(@Argument Long id) {
+        Optional<CollaboratorEconomics> collaboratorEconomics = collaboratorEconomicsRepository.findById(id);
         if (collaboratorEconomics.isPresent()) {
             collaboratorEconomicsRepository.delete(collaboratorEconomics.get());
             return true;

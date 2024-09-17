@@ -29,8 +29,8 @@ public class ProjectGroupYearEstimationResolver {
     }
 
     @QueryMapping
-    public ProjectGroupYearEstimation projectGroupYearEstimation(@Argument ProjectGroupYearEstimationId idProjectGroupTearEstimation) {
-        Optional<ProjectGroupYearEstimation> projectGroup = projectGroupYearEstimationRepository.findById(idProjectGroupTearEstimation);
+    public ProjectGroupYearEstimation projectGroupYearEstimation(@Argument ProjectGroupYearEstimationId id) {
+        Optional<ProjectGroupYearEstimation> projectGroup = projectGroupYearEstimationRepository.findById(id);
         return projectGroup.orElse(null);
     }
 
@@ -45,9 +45,10 @@ public class ProjectGroupYearEstimationResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deleteProjectGroupYearEstimation(@Argument ProjectGroupYearEstimationId idProjectGroupYearEstimation) {
-        if (projectGroupYearEstimationRepository.existsById(idProjectGroupYearEstimation)) {
-            projectGroupYearEstimationRepository.deleteById(idProjectGroupYearEstimation);
+    public DeleteResponse deleteProjectGroupYearEstimation(@Argument ProjectGroupYearEstimationId id) {
+        Optional<ProjectGroupYearEstimation> projectGroupYearEstimation = projectGroupYearEstimationRepository.findById(id);
+        if (projectGroupYearEstimation.isPresent()) {
+            projectGroupYearEstimationRepository.deleteById(id);
             return new DeleteResponse(true);
         } else {
             return new DeleteResponse(false, "Year Estimation not found");

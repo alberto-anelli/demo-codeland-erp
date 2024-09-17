@@ -8,16 +8,16 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "revenue_stream")
-public class RevenueStream {
+public class RevenueStream extends ErpAuditableEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_revenue", nullable = false)
-    private Long idRevenue;
+    private Long id;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "description", nullable = false, length = 250)
+    @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "amount", nullable = false)
@@ -26,7 +26,7 @@ public class RevenueStream {
     @Column(name = "days")
     private int days;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @ManyToOne

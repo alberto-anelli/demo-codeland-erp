@@ -6,10 +6,8 @@ import graphql.language.Value;
 import graphql.schema.*;
 
 import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.TemporalAccessor;
 import java.util.function.Function;
 
 import static graphql.scalar.CoercingUtil.typeName;
@@ -24,57 +22,47 @@ public final class MonthScalar  {
     private MonthScalar() {}
 
     static {
-        Coercing<LocalDate, String> coercing = new Coercing<LocalDate, String>() {
+        Coercing<String, String> coercing = new Coercing<String, String>() {
             @Override
             public String serialize(Object input) throws CoercingSerializeException {
-                TemporalAccessor temporalAccessor;
-                if (input instanceof TemporalAccessor) {
-                    temporalAccessor = (TemporalAccessor) input;
-                } else if (input instanceof String) {
-                    temporalAccessor = parseLocalDate(input.toString(), CoercingSerializeException::new);
+                if (input instanceof String) {
+                    parseLocalDate(input.toString(), CoercingSerializeException::new);
                 } else {
                     throw new CoercingSerializeException(
-                            "Expected a 'String' or 'java.time.temporal.TemporalAccessor' but was '" + typeName(input) + "'."
+                            "Expected a 'String' but was '" + typeName(input) + "'."
                     );
                 }
                 try {
-                    return MONTH_FORMATTER.format(temporalAccessor);
+                    return input.toString();
                 } catch (DateTimeException e) {
                     throw new CoercingSerializeException(
-                            "Unable to turn TemporalAccessor into full date because of : '" + e.getMessage() + "'."
+                            "Unable to turn String into acceptable month because of : '" + e.getMessage() + "'."
                     );
                 }
             }
 
             @Override
-            public LocalDate parseValue(Object input) throws CoercingParseValueException {
-                TemporalAccessor temporalAccessor;
-                if (input instanceof TemporalAccessor) {
-                    temporalAccessor = (TemporalAccessor) input;
-                } else if (input instanceof String) {
-                    temporalAccessor = parseLocalDate(input.toString(), CoercingParseValueException::new);
+            public String parseValue(Object input) throws CoercingParseValueException {
+                if (input instanceof String) {
+                    parseLocalDate(input.toString(), CoercingParseValueException::new);
                 } else {
                     throw new CoercingParseValueException(
                             "Expected a 'String' or 'java.time.temporal.TemporalAccessor' but was '" + typeName(input) + "'."
                     );
                 }
-                try {
-                    return LocalDate.from(temporalAccessor);
-                } catch (DateTimeException e) {
-                    throw new CoercingParseValueException(
-                            "Unable to turn TemporalAccessor into full date because of : '" + e.getMessage() + "'."
-                    );
-                }
+                return input.toString();
             }
 
             @Override
-            public LocalDate parseLiteral(Object input) throws CoercingParseLiteralException {
+            public String parseLiteral(Object input) throws CoercingParseLiteralException {
                 if (!(input instanceof StringValue)) {
                     throw new CoercingParseLiteralException(
                             "Expected AST type 'StringValue' but was '" + typeName(input) + "'."
                     );
+                } else {
+                    parseLocalDate(((StringValue) input).getValue(), CoercingParseLiteralException::new);
                 }
-                return parseLocalDate(((StringValue) input).getValue(), CoercingParseLiteralException::new);
+                return ( (StringValue)input ).getValue();
             }
 
             @Override
@@ -83,19 +71,18 @@ public final class MonthScalar  {
                 return StringValue.newStringValue(s).build();
             }
 
-            private LocalDate parseLocalDate(String s, Function<String, RuntimeException> exceptionMaker) {
+            private void parseLocalDate(String s, Function<String, RuntimeException> exceptionMaker) {
                 try {
-                    TemporalAccessor temporalAccessor = MONTH_FORMATTER.parse(s);
-                    return LocalDate.from(temporalAccessor);
+                    MONTH_FORMATTER.parse(s);
                 } catch (DateTimeParseException e) {
-                    throw exceptionMaker.apply("Invalid RFC3339 full date value : '" + s + "'. because of : '" + e.getMessage() + "'");
+                    throw exceptionMaker.apply("Invalid RFC3339 month value : '" + s + "'. because of : '" + e.getMessage() + "'");
                 }
             }
         };
 
         INSTANCE = GraphQLScalarType.newScalar()
-                .name("Date")
-                .description("An RFC-3339 compliant Full Date Scalar")
+                .name("Month")
+                .description("An RFC-3339 compliant Month Scalar")
                 .coercing(coercing)
                 .build();
     }

@@ -22,8 +22,8 @@ public class CollaboratorResolver {
     }
 
     @QueryMapping
-    public Collaborator collaborator(@Argument Long idCollaborator) {
-        Optional<Collaborator> collaborator = collaboratorRepository.findById(idCollaborator);
+    public Collaborator collaborator(@Argument Long id) {
+        Optional<Collaborator> collaborator = collaboratorRepository.findById(id);
         return collaborator.orElse(null);
     }
 
@@ -43,9 +43,9 @@ public class CollaboratorResolver {
     }
 
     @MutationMapping
-    public Boolean deleteCollaborator(@Argument Long idCollaborator) {
-        if (collaboratorRepository.existsById(idCollaborator)) {
-            collaboratorRepository.deleteById(idCollaborator);
+    public Boolean deleteCollaborator(@Argument Long id) {
+        if (collaboratorRepository.existsById(id)) {
+            collaboratorRepository.deleteById(id);
             return true;
         } else {
             throw new RuntimeException("Collaborator not found");
@@ -59,4 +59,5 @@ public class CollaboratorResolver {
     ) {
         return collaboratorRepository.findCollaboratorsByEconomicsCriteria(level, ralBelow);
     }
+
 }

@@ -10,16 +10,16 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project extends ErpAuditableEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_project", nullable = false)
-    private Long idProject;
+    private Long id;
 
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @Column(name = "active")

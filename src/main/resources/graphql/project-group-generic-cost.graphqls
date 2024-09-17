@@ -1,0 +1,24 @@
+type ProjectGroupGenericCost {
+    id: Month!
+    amount: Float!
+    notes: String
+    projectGroup: ProjectGroup!
+}
+
+input ProjectGroupGenericCostInput {
+    id: Month
+    amount: Float!
+    notes: String
+    idProjectGroup: ID!
+}
+
+extend type Query {
+    allProjectGroupGenericCost: [ProjectGroupGenericCost]
+    projectGroupGenericCost(id: Month!): ProjectGroupGenericCost
+}
+
+extend type Mutation {
+    createProjectGroupGenericCost(projectGroupGenericCost: ProjectGroupGenericCostInput!): ProjectGroupGenericCost
+    updateProjectGroupGenericCost(projectGroupGenericCost: ProjectGroupGenericCostInput!): ProjectGroupGenericCost
+    deleteProjectGroupGenericCost(id: Month!): DeleteResponse
+}

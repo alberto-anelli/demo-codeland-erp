@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "COLLABORATORS")
-public class Collaborator implements Serializable {
+public class Collaborator extends ErpAuditableEntity<Long> {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -21,7 +21,7 @@ public class Collaborator implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_collaborator", length = 20)
-    private Long idCollaborator;
+    private Long id;
 
     @Column(name = "code", length = 20)
     private String code;
@@ -41,13 +41,13 @@ public class Collaborator implements Serializable {
     @Column(name = "address", length = 100)
     private String address;
 
-    @Column(name = "email", length = 250)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "phone", length = 30)
     private String phone;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 
     @OneToMany(mappedBy = "collaborator", fetch = FetchType.LAZY)

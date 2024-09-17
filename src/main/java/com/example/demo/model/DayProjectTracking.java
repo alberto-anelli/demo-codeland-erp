@@ -9,28 +9,22 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "day_project_tracking")
-@IdClass(DayProjectTrackingId.class)
-public class DayProjectTracking {
-    @Id
-    @Column(name = "id_project")
-    private Long idProject;
+@Table(name = DayProjectTracking.TABLE_NAME)
+//@IdClass(DayProjectTrackingId.class)
+public class DayProjectTracking extends ErpAuditableEntity<DayProjectTrackingId> {
+
+    public static final String TABLE_NAME = "day_project_tracking";
+
+    @EmbeddedId
+    private DayProjectTrackingId id;
 
     @ManyToOne
     @JoinColumn(name = "id_project", nullable = false, insertable = false, updatable = false)
     private Project project;
 
-    @Id
-    @Column(name = "id_collaborator")
-    private Long idCollaborator;
-
     @ManyToOne
     @JoinColumn(name = "id_collaborator", nullable = false, insertable = false, updatable = false)
     private Collaborator collaborator;
-
-    @Id
-    @Column(name = "day")
-    private LocalDate day;
 
     @Column(name = "hours")
     private int hours;
@@ -47,6 +41,6 @@ public class DayProjectTracking {
     @Column(name = "moreInfo", length = 100)
     private String moreInfo;
 
-    @Column(name = "notes", length = 250)
+    @Column(name = "notes")
     private String notes;
 }

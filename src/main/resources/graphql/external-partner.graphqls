@@ -1,5 +1,5 @@
 type ExternalPartner {
-    idPartner: ID!
+    id: ID!
     title: String!
     vat: String
     address: String
@@ -11,7 +11,7 @@ type ExternalPartner {
 }
 
 input ExternalPartnerInput {
-    idPartner: ID
+    id: ID
     title: String!
     vat: String
     address: String
@@ -23,11 +23,11 @@ input ExternalPartnerInput {
 
 extend type Query {
     allExternalPartner: [ExternalPartner]
-    externalPartner(idExternalPartner: ID!): ExternalPartner
+    externalPartner(id: ID!): ExternalPartner
 }
 
 extend type Mutation {
     createExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
     updateExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
-    deleteExternalPartner(idExternalPartner: ID!): DeleteResponse
+    deleteExternalPartner(id: ID!): DeleteResponse
 }

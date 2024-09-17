@@ -7,16 +7,16 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 
 @Embeddable
-public class ErpDeleteInfo implements Serializable {
+public class ErpArchiveInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Column
-    private Boolean deleted = false;
+    private Boolean archived = false;
 
     @Column
-    private OffsetDateTime deletedDate;
+    private OffsetDateTime archivedDate;
 
     @Column
-    private String deletedBy;
+    private String archivedBy;
 }

@@ -27,8 +27,8 @@ public class DayProjectTrackingResolver {
     }
 
     @QueryMapping
-    public DayProjectTracking dayProjectTracking(@Argument DayProjectTrackingId idDayProjectTracking) {
-        return dayProjectTrackingRepository.findById(idDayProjectTracking).orElse(null);
+    public DayProjectTracking dayProjectTracking(@Argument DayProjectTrackingId id) {
+        return dayProjectTrackingRepository.findById(id).orElse(null);
     }
 
     @MutationMapping
@@ -42,9 +42,9 @@ public class DayProjectTrackingResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deleteDayProjectTracking(@Argument DayProjectTrackingId idDayProjectTracking) {
-        if (dayProjectTrackingRepository.existsById(idDayProjectTracking)) {
-            dayProjectTrackingRepository.deleteById(idDayProjectTracking);
+    public DeleteResponse deleteDayProjectTracking(@Argument DayProjectTrackingId id) {
+        if (dayProjectTrackingRepository.existsById(id)) {
+            dayProjectTrackingRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Day project tracking not found");

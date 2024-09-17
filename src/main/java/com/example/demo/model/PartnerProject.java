@@ -10,25 +10,15 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "partner_project")
-@IdClass(PartnerProjectId.class)
-public class PartnerProject {
+public class PartnerProject extends ErpAuditableEntity<PartnerProjectId>{
 
-  @Id
-  @Column(name = "id_project")
-  private Long idProject;
-
-  @Id
-  @Column(name = "id_partner")
-  private Long idPartner;
-
-  @Id
-  @Column(name = "month")
-  private String month;
+  @EmbeddedId
+  private PartnerProjectId id;
 
   @Column(name = "amount", nullable = false)
   private float amount;
 
-  @Column(name = "description", nullable = false, length = 250)
+  @Column(name = "description", nullable = false)
   private String description;
 
   @Column(name = "invoiceNr", length = 20)
@@ -37,7 +27,7 @@ public class PartnerProject {
   @Column(name = "payment_date")
   private LocalDate paymentDate;
 
-  @Column(name = "notes", length = 250)
+  @Column(name = "notes")
   private String notes;
 
   @ManyToOne

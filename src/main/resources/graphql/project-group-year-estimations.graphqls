@@ -21,11 +21,11 @@ input ProjectGroupYearEstimationInput {
 
 extend type Query {
     allProjectGroupYearEstimation: [ProjectGroupYearEstimation]
-    projectGroupYearEstimation(idProjectGroupTearEstimation: ProjectGroupYearEstimationId!): ProjectGroupYearEstimation
+    projectGroupYearEstimation(id: ProjectGroupYearEstimationId!): ProjectGroupYearEstimation
 }
 
 extend type Mutation {
     createProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
     updateProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
-    deleteProjectGroupYearEstimation(idProjectGroupYearEstimation: ProjectGroupYearEstimationId!): DeleteResponse
+    deleteProjectGroupYearEstimation(id: ProjectGroupYearEstimationId!): DeleteResponse
 }

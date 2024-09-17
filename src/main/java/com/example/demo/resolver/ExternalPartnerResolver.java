@@ -26,8 +26,8 @@ public class ExternalPartnerResolver {
     }
 
     @QueryMapping
-    public ExternalPartner externalPartner(@Argument Long idExternalPartner) {
-        Optional<ExternalPartner> project = externalPartnerRepository.findById(idExternalPartner);
+    public ExternalPartner externalPartner(@Argument Long id) {
+        Optional<ExternalPartner> project = externalPartnerRepository.findById(id);
         return project.orElse(null);
     }
 
@@ -42,9 +42,9 @@ public class ExternalPartnerResolver {
     }
 
     @MutationMapping
-    public DeleteResponse deleteExternalPartner(@Argument Long idExternalPartner) {
-        if (externalPartnerRepository.existsById(idExternalPartner)) {
-            externalPartnerRepository.deleteById(idExternalPartner);
+    public DeleteResponse deleteExternalPartner(@Argument Long id) {
+        if (externalPartnerRepository.existsById(id)) {
+            externalPartnerRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Partner project not found");
