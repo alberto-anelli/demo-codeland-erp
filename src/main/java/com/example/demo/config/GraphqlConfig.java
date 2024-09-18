@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableJpaAuditing
 @Configuration
-public class GraphqlConfig implements WebMvcConfigurer {
+public class GraphqlConfig {
 
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurer() {

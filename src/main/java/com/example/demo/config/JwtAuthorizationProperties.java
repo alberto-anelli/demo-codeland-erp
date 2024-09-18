@@ -4,62 +4,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author Baeldung
  *
  */
+@Setter
+@Getter
 @ConfigurationProperties(prefix="codeland.jwt.authorization")
 public class JwtAuthorizationProperties {
 
+    /**
+     * -- GETTER --
+     *
+     *
+     * -- SETTER --
+     *
+     @return the groupsClaim
+      * @param groupsClaim the groupsClaim to set
+     */
     // Claim that has the group list
     private String groupsClaim = "groups";
 
+    /**
+     * -- GETTER --
+     *
+     *
+     * -- SETTER --
+     *
+     @return the authoritiesPrefix
+      * @param authoritiesPrefix the authoritiesPrefix to set
+     */
     private String authoritiesPrefix = "ROLE_";
 
+    /**
+     * -- GETTER --
+     *
+     *
+     * -- SETTER --
+     *
+     @return the groupToAuthorities
+      * @param groupToAuthorities the groupToAuthorities to set
+     */
     // map groupIds to a list of authorities.
     private Map<String,List<String>> groupToAuthorities = new HashMap<>();
 
-    /**
-     * @return the groupsClaim
-     */
-    public String getGroupsClaim() {
-        return groupsClaim;
-    }
-
-    /**
-     * @param groupsClaim the groupsClaim to set
-     */
-    public void setGroupsClaim(String groupsClaim) {
-        this.groupsClaim = groupsClaim;
-    }
-
-    /**
-     * @return the groupToAuthorities
-     */
-    public Map<String, List<String>> getGroupToAuthorities() {
-        return groupToAuthorities;
-    }
-
-    /**
-     * @param groupToAuthorities the groupToAuthorities to set
-     */
-    public void setGroupToAuthorities(Map<String, List<String>> groupToAuthorities) {
-        this.groupToAuthorities = groupToAuthorities;
-    }
-
-    /**
-     * @return the authoritiesPrefix
-     */
-    public String getAuthoritiesPrefix() {
-        return authoritiesPrefix;
-    }
-
-    /**
-     * @param authoritiesPrefix the authoritiesPrefix to set
-     */
-    public void setAuthoritiesPrefix(String authoritiesPrefix) {
-        this.authoritiesPrefix = authoritiesPrefix;
-    }
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexResolver {
 
     @GetMapping
-    @Secured("ROLE_ERP_ADMIN")
     public String index(Model model, Authentication user) {
         model.addAttribute("user", user);
         return "index";
