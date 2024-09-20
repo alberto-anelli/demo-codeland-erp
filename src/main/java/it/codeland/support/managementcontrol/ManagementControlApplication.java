@@ -1,4 +1,4 @@
-package com.example.demo;
+package it.codeland.support.managementcontrol;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
