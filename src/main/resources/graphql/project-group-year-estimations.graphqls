@@ -27,5 +27,5 @@ extend type Query {
 extend type Mutation {
     createProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
     updateProjectGroupYearEstimation(projectGroupYearEstimation: ProjectGroupYearEstimationInput!): ProjectGroupYearEstimation
-    deleteProjectGroupYearEstimation(id: ProjectGroupYearEstimationId!): DeleteResponse
+    deleteProjectGroupYearEstimation(id: ProjectGroupYearEstimationId!): Boolean
 }

@@ -22,7 +22,7 @@ extend type Query {
 extend type Mutation {
     createProject(project: ProjectInput!): Project
     updateProject(project: ProjectInput!): Project
-    deleteProject(id: ID!): DeleteResponse
+    deleteProject(id: ID!): Boolean
 }
 
 

@@ -34,7 +34,6 @@ extend type Query {
 }
 
 extend type Mutation {
-    createDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
     updateDayProjectTracking(dayProjectTracking: DayProjectTrackingInput!): DayProjectTracking
-    deleteDayProjectTracking(id: DayProjectTrackingId!): DeleteResponse
+    deleteDayProjectTracking(id: DayProjectTrackingId!): Boolean
 }

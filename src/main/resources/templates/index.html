@@ -34,14 +34,6 @@
         <td>isAuthenticated?</td>
         <td data-th-text="${user.authenticated}">user.authenticated</td>
     </tr>
-    <tr>
-        <td>clientRegistrationId</td>
-        <td data-th-text="${user.authorizedClientRegistrationId}">user.authorizedClientregistrationId</td>
-    </tr>
-    <tr data-th-each="claim : ${user.principal.claims}">
-        <td >Claim: <span data-th-text="${claim.key}">key</span></td>
-        <td data-th-text="${claim.value}">value</td>
-    </tr>
     <tr data-th-each="ga : ${user.authorities}">
         <td >Granted Authority: <span data-th-text="${ga.class.simpleName}"></span></td>
         <td data-th-text="${ga.authority}">authority</td>

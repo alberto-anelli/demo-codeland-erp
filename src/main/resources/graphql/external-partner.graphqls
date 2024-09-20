@@ -49,7 +49,6 @@ extend type Query {
 }
 
 extend type Mutation {
-    createExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
     updateExternalPartner(externalPartner: ExternalPartnerInput!): ExternalPartner
-    deleteExternalPartner(id: ID!): DeleteResponse
+    deleteExternalPartner(id: ID!): Boolean
 }

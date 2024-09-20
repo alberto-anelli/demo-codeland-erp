@@ -1,4 +1,7 @@
-package it.codeland.support.managementcontrol.model;
+package it.codeland.support.managementcontrol.repository;
 
-public interface CompanyRepository extends org.springframework.data.jpa.repository.JpaRepository<it.codeland.support.managementcontrol.model.Company, java.lang.Long> {
-  }
+import it.codeland.support.managementcontrol.model.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+}

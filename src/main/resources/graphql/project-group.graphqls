@@ -25,5 +25,5 @@ extend type Mutation {
     createProjectGroup(projectGroup: ProjectGroupInput!): ProjectGroup
     updateProjectGroup(projectGroup: ProjectGroupInput!): ProjectGroup
     patchProjectGroup(projectGroup: ProjectGroupInput!): ProjectGroup
-    deleteProjectGroup(id: ID!): DeleteResponse
+    deleteProjectGroup(id: ID!): Boolean
 }

@@ -49,6 +49,6 @@ extend type Mutation {
         collaboratorEconomics: CollaboratorEconomicsInput!
         versionDate: Date
     ): CollaboratorEconomics
-    deleteCollaboratorEconomics(id: String!): DeleteResponse
+    deleteCollaboratorEconomics(id: String!): Boolean
 
 }

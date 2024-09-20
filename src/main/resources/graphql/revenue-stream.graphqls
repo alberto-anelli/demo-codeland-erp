@@ -48,9 +48,9 @@ extend type Query {
 extend type Mutation {
     createRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
     updateRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
-    deleteRevenueStream(id: ID!): DeleteResponse
+    deleteRevenueStream(id: ID!): Boolean
 
     createStreamAdvancement(streamAdvancement: StreamAdvancementInput!): StreamAdvancement
     updateStreamAdvancement(streamAdvancement: StreamAdvancementInput!): StreamAdvancement
-    deleteStreamAdvancement(id: ID!): DeleteResponse
+    deleteStreamAdvancement(id: ID!): Boolean
 }

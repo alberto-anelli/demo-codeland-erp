@@ -14,7 +14,6 @@ extend type Query {
 }
 
 extend type Mutation {
-    createJobRole(jobRole: JobRoleInput!): JobRole
     updateJobRole(jobRole: JobRoleInput!): JobRole
-    deleteJobRole(id: ID!): DeleteResponse
+    deleteJobRole(id: ID!): Boolean
 }

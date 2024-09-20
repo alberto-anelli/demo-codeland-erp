@@ -1,20 +1,19 @@
-type JobRole {
+type Company {
     id: ID!
     name: String!
 }
 
-input JobRoleInput {
+input CompanyInput {
     id: ID
     name: String
 }
 
 extend type Query {
-    jobRole(id: ID!): JobRole
-    allJobRoles: [JobRole]
+    company(id: ID!): Company
+    allCompanies: [Company]
 }
 
 extend type Mutation {
-    createJobRole(jobRole: JobRoleInput!): JobRole
-    updateJobRole(jobRole: JobRoleInput!): JobRole
-    deleteJobRole(id: ID!): DeleteResponse
+    updateCompany(company: CompanyInput!): Company
+    deleteCompany(id: ID!): Boolean
 }

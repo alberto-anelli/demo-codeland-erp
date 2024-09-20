@@ -1,6 +1,6 @@
 package it.codeland.support.managementcontrol.resolver;
 
-import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
 import it.codeland.support.managementcontrol.model.DayProjectTracking;
 import it.codeland.support.managementcontrol.model.DayProjectTrackingId;
 import it.codeland.support.managementcontrol.repository.DayProjectTrackingRepository;
@@ -12,39 +12,34 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class DayProjectTrackingResolver {
-    private final DayProjectTrackingRepository dayProjectTrackingRepository;
+    private final DayProjectTrackingRepository repository;
 
-    @Autowired
     public DayProjectTrackingResolver(DayProjectTrackingRepository dayProjectTrackingRepository) {
-        this.dayProjectTrackingRepository = dayProjectTrackingRepository;
+        this.repository = dayProjectTrackingRepository;
     }
 
     @QueryMapping
     public Iterable<DayProjectTracking> allDayProjectTracking() {
-        return dayProjectTrackingRepository.findAll();
+        return repository.findAll();
     }
 
     @QueryMapping
     public DayProjectTracking dayProjectTracking(@Argument DayProjectTrackingId id) {
-        return dayProjectTrackingRepository.findById(id).orElse(null);
-    }
-
-    @MutationMapping
-    public DayProjectTracking createDayProjectTracking(@Argument DayProjectTracking dayProjectTracking) {
-        return dayProjectTrackingRepository.save(dayProjectTracking);
+        return repository.findById(id).orElse(null);
     }
 
     @MutationMapping
     public DayProjectTracking updateDayProjectTracking(@Argument DayProjectTracking dayProjectTracking) {
-        return dayProjectTrackingRepository.save(dayProjectTracking);
+        return repository.save(dayProjectTracking);
     }
 
     @MutationMapping
-    public DeleteResponse deleteDayProjectTracking(@Argument DayProjectTrackingId id) {
-        if (dayProjectTrackingRepository.existsById(id)) {
-            dayProjectTrackingRepository.deleteById(id);
-            return new DeleteResponse(true);
+    public Boolean deleteDayProjectTracking(@Argument DayProjectTrackingId id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
         }
-        return new DeleteResponse(false, "Day project tracking not found");
+        throw new EntityNotFoundException("Day project tracking (collaborator:{0}, project:{1}, day:{2}) not found",
+                id.getIdCollaborator(), id.getIdProject(), id.getDay());
     }
 }

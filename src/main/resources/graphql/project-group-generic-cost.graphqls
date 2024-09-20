@@ -20,5 +20,5 @@ extend type Query {
 extend type Mutation {
     createProjectGroupGenericCost(projectGroupGenericCost: ProjectGroupGenericCostInput!): ProjectGroupGenericCost
     updateProjectGroupGenericCost(projectGroupGenericCost: ProjectGroupGenericCostInput!): ProjectGroupGenericCost
-    deleteProjectGroupGenericCost(id: Month!): DeleteResponse
+    deleteProjectGroupGenericCost(id: Month!): Boolean
 }

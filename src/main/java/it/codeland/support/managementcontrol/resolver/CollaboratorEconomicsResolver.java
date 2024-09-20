@@ -59,6 +59,6 @@ public class CollaboratorEconomicsResolver {
             repository.delete(collaboratorEconomics.get());
             return true;
         }
-        throw new EntityNotFoundException("Version not found");
+        throw new EntityNotFoundException("Version (id:{0}) not found", id);
     }
 }

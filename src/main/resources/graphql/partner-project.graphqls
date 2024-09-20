@@ -36,5 +36,5 @@ extend type Query {
 extend type Mutation {
     createPartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
     updatePartnerProject(partnerProject: PartnerProjectInput!): PartnerProject
-    deletePartnerProject(id: PartnerProjectId!): DeleteResponse
+    deletePartnerProject(id: PartnerProjectId!): Boolean
 }

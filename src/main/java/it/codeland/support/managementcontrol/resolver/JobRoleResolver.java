@@ -27,11 +27,6 @@ public class JobRoleResolver {
     }
 
     @MutationMapping
-    public JobRole createJobRole(@Argument JobRole jobRole) {
-        return repository.save(jobRole);
-    }
-
-    @MutationMapping
     public JobRole updateJobRole(@Argument JobRole jobRole) {
         return repository.save(jobRole);
     }

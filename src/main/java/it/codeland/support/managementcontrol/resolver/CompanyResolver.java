@@ -1,48 +1,44 @@
 package it.codeland.support.managementcontrol.resolver;
 
-import it.codeland.support.managementcontrol.model.JobRole;
-import it.codeland.support.managementcontrol.repository.JobRoleRepository;
+import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
+import it.codeland.support.managementcontrol.model.Company;
+import it.codeland.support.managementcontrol.repository.CompanyRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class JobRoleResolver {
+public class CompanyResolver {
 
-    private final JobRoleRepository repository;
+    private final CompanyRepository repository;
 
-    public JobRoleResolver(JobRoleRepository repository) {
+    public CompanyResolver(CompanyRepository repository) {
         this.repository = repository;
     }
 
     @QueryMapping
-    public JobRole jobRole(@Argument Long id) {
+    public Company company(@Argument Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public Iterable<JobRole> allJobRoles() {
+    public Iterable<Company> allCompanies() {
         return repository.findAll();
     }
 
     @MutationMapping
-    public JobRole createJobRole(@Argument JobRole jobRole) {
-        return repository.save(jobRole);
+    public Company updateCompany(@Argument Company company) {
+        return repository.save(company);
     }
 
     @MutationMapping
-    public JobRole updateJobRole(@Argument JobRole jobRole) {
-        return repository.save(jobRole);
-    }
-
-    @MutationMapping
-    public Boolean deleteJobRole(@Argument Long id) {
+    public Boolean deleteCompany(@Argument Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
         } else {
-            throw new RuntimeException("JobRole not found");
+            throw new EntityNotFoundException("Company (id:{0}) not found", id);
         }
     }
 
