@@ -31,7 +31,7 @@ public class CollaboratorEconomicsResolver {
 
     // Mutation for updating an existing CollaboratorEconomics
     @MutationMapping
-    public CollaboratorEconomics updateCollaboratorEconomics(@Argument CollaboratorEconomics collaboratorEconomics,
+    public CollaboratorEconomics updateVersion(@Argument CollaboratorEconomics collaboratorEconomics,
                                                              @Argument LocalDate versionDate) {
         if(versionDate != null) {
             Optional<CollaboratorEconomics> optional = repository.findByIdCollaboratorAndVersionToDateIsNull(collaboratorEconomics.getIdCollaborator());
@@ -53,7 +53,7 @@ public class CollaboratorEconomicsResolver {
 
     // Mutation for deleting an existing CollaboratorEconomics
     @MutationMapping
-    public Boolean deleteCollaboratorEconomics(@Argument Long id) {
+    public Boolean deleteVersion(@Argument Long id) {
         Optional<CollaboratorEconomics> collaboratorEconomics = repository.findById(id);
         if (collaboratorEconomics.isPresent()) {
             repository.delete(collaboratorEconomics.get());

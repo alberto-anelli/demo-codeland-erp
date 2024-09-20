@@ -45,10 +45,10 @@ extend type Query {
 }
 
 extend type Mutation {
-    updateCollaboratorEconomics(
+    updateVersion(
         collaboratorEconomics: CollaboratorEconomicsInput!
         versionDate: Date
     ): CollaboratorEconomics
-    deleteCollaboratorEconomics(id: String!): Boolean
+    deleteVersion(id: String!): Boolean
 
 }
