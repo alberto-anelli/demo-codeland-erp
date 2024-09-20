@@ -1,16 +1,14 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.StreamAdvancement;
-import com.example.demo.model.StreamAdvancementId;
-import com.example.demo.model.StreamAdvancementRepository;
+import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.model.StreamAdvancement;
+import it.codeland.support.managementcontrol.model.StreamAdvancementId;
+import it.codeland.support.managementcontrol.model.StreamAdvancementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
-import java.util.Optional;
 
 @Controller
 public class StreamAdvancementResolver {

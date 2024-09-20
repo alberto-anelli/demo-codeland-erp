@@ -1,8 +1,7 @@
-package com.example.demo.config;
+package it.codeland.support.managementcontrol.config;
 
-import com.example.demo.util.SecurityUtils;
+import it.codeland.support.managementcontrol.util.SecurityUtils;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.lang.NonNullApi;
 
 import java.util.Optional;
 

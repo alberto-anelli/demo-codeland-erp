@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package it.codeland.support.managementcontrol.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

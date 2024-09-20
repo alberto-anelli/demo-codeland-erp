@@ -1,11 +1,9 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.ProjectGroup;
-import com.example.demo.model.ProjectGroupYearEstimation;
-import com.example.demo.model.ProjectGroupYearEstimationId;
-import com.example.demo.repository.ProjectGroupRepository;
-import com.example.demo.repository.ProjectGroupYearEstimationRepository;
+import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.model.ProjectGroupYearEstimation;
+import it.codeland.support.managementcontrol.model.ProjectGroupYearEstimationId;
+import it.codeland.support.managementcontrol.repository.ProjectGroupYearEstimationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

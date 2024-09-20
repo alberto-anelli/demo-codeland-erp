@@ -1,4 +1,4 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;

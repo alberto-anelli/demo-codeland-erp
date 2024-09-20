@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.model.RevenueStream;
+import it.codeland.support.managementcontrol.model.RevenueStream;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RevenueStreamRepository extends JpaRepository<RevenueStream, Long> {

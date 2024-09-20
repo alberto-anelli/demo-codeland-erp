@@ -1,12 +1,9 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.filter.ExternalPartnerFilter;
-import com.example.demo.model.ExternalPartner;
+import it.codeland.support.managementcontrol.filter.ExternalPartnerFilter;
+import it.codeland.support.managementcontrol.model.ExternalPartner;
 import jakarta.persistence.criteria.Predicate;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

@@ -1,4 +1,4 @@
-package com.example.demo.filter;
+package it.codeland.support.managementcontrol.filter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.filter.ErpFilter;
+import it.codeland.support.managementcontrol.filter.ErpFilter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

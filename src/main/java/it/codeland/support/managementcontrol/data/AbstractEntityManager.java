@@ -1,7 +1,7 @@
-package com.example.demo.data;
+package it.codeland.support.managementcontrol.data;
 
-import com.example.demo.model.ErpEntity;
-import com.example.demo.util.DataMapperUtils;
+import it.codeland.support.managementcontrol.model.ErpEntity;
+import it.codeland.support.managementcontrol.util.DataMapperUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

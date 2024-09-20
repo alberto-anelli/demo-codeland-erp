@@ -1,6 +1,6 @@
-package com.example.demo.data;
+package it.codeland.support.managementcontrol.data;
 
-import com.example.demo.model.ErpEntity;
+import it.codeland.support.managementcontrol.model.ErpEntity;
 
 import java.io.Serializable;
 

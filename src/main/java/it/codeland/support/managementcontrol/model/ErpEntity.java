@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package it.codeland.support.managementcontrol.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

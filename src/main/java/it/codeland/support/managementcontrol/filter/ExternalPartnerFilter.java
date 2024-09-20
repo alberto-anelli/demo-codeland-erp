@@ -1,8 +1,7 @@
-package com.example.demo.filter;
+package it.codeland.support.managementcontrol.filter;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.PageRequest;
 
 @Getter
 @Setter

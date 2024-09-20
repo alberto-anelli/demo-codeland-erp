@@ -1,7 +1,7 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.model.JobRole;
-import com.example.demo.repository.JobRoleRepository;
+import it.codeland.support.managementcontrol.model.JobRole;
+import it.codeland.support.managementcontrol.repository.JobRoleRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;

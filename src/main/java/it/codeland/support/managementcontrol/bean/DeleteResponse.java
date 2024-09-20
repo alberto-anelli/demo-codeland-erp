@@ -1,4 +1,4 @@
-package com.example.demo.bean;
+package it.codeland.support.managementcontrol.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

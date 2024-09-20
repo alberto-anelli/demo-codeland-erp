@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package it.codeland.support.managementcontrol.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

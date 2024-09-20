@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package it.codeland.support.managementcontrol.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

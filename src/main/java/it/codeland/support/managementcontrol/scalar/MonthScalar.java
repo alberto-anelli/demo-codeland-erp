@@ -1,4 +1,4 @@
-package com.example.demo.scalar;
+package it.codeland.support.managementcontrol.scalar;
 
 import graphql.Internal;
 import graphql.language.StringValue;

@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.model.JobRole;
+import it.codeland.support.managementcontrol.model.JobRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JobRoleRepository extends JpaRepository<JobRole, Long> {

@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.model.CollaboratorEconomics;
+import it.codeland.support.managementcontrol.model.CollaboratorEconomics;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,19 +1,15 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.bean.DeleteResponse;
-import com.example.demo.data.ErpPageData;
-import com.example.demo.model.ProjectGroup;
-import com.example.demo.repository.ProjectGroupRepository;
+import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.model.ProjectGroup;
+import it.codeland.support.managementcontrol.repository.ProjectGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 

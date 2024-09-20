@@ -1,4 +1,4 @@
-package com.example.demo.data;
+package it.codeland.support.managementcontrol.data;
 
 import lombok.Getter;
 import lombok.Setter;

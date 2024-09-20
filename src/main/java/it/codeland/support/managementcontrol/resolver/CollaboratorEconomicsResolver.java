@@ -1,21 +1,15 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.exception.EntityNotFoundException;
-import com.example.demo.exception.InvalidInputException;
-import com.example.demo.model.Collaborator;
-import com.example.demo.model.CollaboratorEconomics;
-import com.example.demo.model.JobRole;
-import com.example.demo.repository.CollaboratorEconomicsRepository;
-import com.example.demo.repository.CollaboratorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
+import it.codeland.support.managementcontrol.exception.InvalidInputException;
+import it.codeland.support.managementcontrol.model.CollaboratorEconomics;
+import it.codeland.support.managementcontrol.repository.CollaboratorEconomicsRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

@@ -1,17 +1,14 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.data.ErpPageData;
-import com.example.demo.exception.EntityNotFoundException;
-import com.example.demo.filter.CollaboratorFilter;
-import com.example.demo.model.Collaborator;
-import com.example.demo.repository.CollaboratorRepository;
+import it.codeland.support.managementcontrol.data.ErpPageData;
+import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
+import it.codeland.support.managementcontrol.filter.CollaboratorFilter;
+import it.codeland.support.managementcontrol.model.Collaborator;
+import it.codeland.support.managementcontrol.repository.CollaboratorRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 @Controller

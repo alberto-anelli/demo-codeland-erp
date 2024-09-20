@@ -1,9 +1,8 @@
-package com.example.demo.data;
+package it.codeland.support.managementcontrol.data;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 
 import java.io.Serial;
 import java.io.Serializable;

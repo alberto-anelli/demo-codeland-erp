@@ -1,19 +1,16 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.bean.DeleteResponse;
-import com.example.demo.data.ErpPageData;
-import com.example.demo.filter.ExternalPartnerFilter;
-import com.example.demo.model.ExternalPartner;
-import com.example.demo.repository.ExternalPartnerRepository;
+import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.data.ErpPageData;
+import it.codeland.support.managementcontrol.filter.ExternalPartnerFilter;
+import it.codeland.support.managementcontrol.model.ExternalPartner;
+import it.codeland.support.managementcontrol.repository.ExternalPartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller

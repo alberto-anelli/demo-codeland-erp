@@ -17,7 +17,7 @@
  *
  */
 
-package com.example.demo.util;
+package it.codeland.support.managementcontrol.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.TextNode;

@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.model.GenericCost;
+import it.codeland.support.managementcontrol.model.GenericCost;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GenericCostRepository extends JpaRepository<GenericCost, Long> {

@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package it.codeland.support.managementcontrol.exception;
 
 import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;

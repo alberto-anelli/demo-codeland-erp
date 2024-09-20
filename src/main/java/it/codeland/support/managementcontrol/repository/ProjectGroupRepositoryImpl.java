@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.data.AbstractEntityManager;
-import com.example.demo.model.ProjectGroup;
+import it.codeland.support.managementcontrol.data.AbstractEntityManager;
+import it.codeland.support.managementcontrol.model.ProjectGroup;
 
 public class ProjectGroupRepositoryImpl extends AbstractEntityManager<ProjectGroup, Long> {
 }

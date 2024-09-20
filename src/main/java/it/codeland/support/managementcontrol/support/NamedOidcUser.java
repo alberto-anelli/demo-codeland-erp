@@ -1,4 +1,4 @@
-package com.example.demo.support;
+package it.codeland.support.managementcontrol.support;
 
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;

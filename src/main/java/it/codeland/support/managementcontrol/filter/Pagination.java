@@ -1,11 +1,8 @@
-package com.example.demo.filter;
+package it.codeland.support.managementcontrol.filter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

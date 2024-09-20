@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.model.PartnerProject;
-import com.example.demo.model.PartnerProjectId;
+import it.codeland.support.managementcontrol.model.PartnerProject;
+import it.codeland.support.managementcontrol.model.PartnerProjectId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PartnerProjectRepository extends JpaRepository<PartnerProject, PartnerProjectId> {

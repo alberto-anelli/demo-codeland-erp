@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package it.codeland.support.managementcontrol.repository;
 
-import com.example.demo.data.IEntityManager;
-import com.example.demo.model.ProjectGroup;
+import it.codeland.support.managementcontrol.data.IEntityManager;
+import it.codeland.support.managementcontrol.model.ProjectGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

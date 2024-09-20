@@ -1,10 +1,8 @@
-package com.example.demo.resolver;
+package it.codeland.support.managementcontrol.resolver;
 
-import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.Project;
-import com.example.demo.model.ProjectGroup;
-import com.example.demo.repository.ProjectGroupRepository;
-import com.example.demo.repository.ProjectRepository;
+import it.codeland.support.managementcontrol.bean.DeleteResponse;
+import it.codeland.support.managementcontrol.model.Project;
+import it.codeland.support.managementcontrol.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
