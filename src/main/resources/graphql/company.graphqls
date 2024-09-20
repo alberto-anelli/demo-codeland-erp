@@ -1,0 +1,20 @@
+type JobRole {
+    id: ID!
+    name: String!
+}
+
+input JobRoleInput {
+    id: ID
+    name: String
+}
+
+extend type Query {
+    jobRole(id: ID!): JobRole
+    allJobRoles: [JobRole]
+}
+
+extend type Mutation {
+    createJobRole(jobRole: JobRoleInput!): JobRole
+    updateJobRole(jobRole: JobRoleInput!): JobRole
+    deleteJobRole(id: ID!): DeleteResponse
+}
