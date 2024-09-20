@@ -1,0 +1,62 @@
+
+type Company {
+    id: ID!
+    name: String!
+}
+
+type JobRole {
+    id: ID!
+    name: String!
+}
+
+type Collaborator implements ManagementToolEntity {
+    id: ID!
+    code: String
+    company: Company
+    name: String!
+    surname: String!
+    dateOfBirth: Date!
+    address: String
+    city: String
+    region: String
+    email: String
+    phone: String
+    notes: String
+    collaboratorEconomics: [CollaboratorEconomics]
+    dayProjectTrackings: [DayProjectTracking]
+}
+
+input CollaboratorFilter {
+    key: String
+    idJobRole: ID
+    idCompany: ID
+    active: Boolean
+    pagination: Pagination
+}
+
+input CollaboratorInput {
+    id: ID
+    code: String
+    idCompany: ID
+    name: String!
+    surname: String!
+    dateOfBirth: Date!
+    address: String
+    city: String
+    region: String
+    email: String
+    phone: String
+    notes: String
+}
+
+extend type Query {
+    collaborator(id: ID!): Collaborator
+    collaborators(filter: CollaboratorFilter): ErpPageData
+    allCollaborators: [Collaborator]
+}
+
+extend type Mutation {
+    createCollaborator(collaborator: CollaboratorInput!): Collaborator
+    updateCollaborator(collaborator: CollaboratorInput!): Collaborator
+    deleteCollaborator(id: ID!): DeleteResponse
+}
