@@ -2,11 +2,12 @@ package com.example.demo.filter;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.PageRequest;
 
 @Getter
 @Setter
-public class ExternalPartnerFilter extends ErpFilter {
+public class CollaboratorFilter extends ErpFilter {
     String key;
     Boolean active;
+    Long idJobRole;
+    Long idCompany;
 }

@@ -1,57 +1,48 @@
 package com.example.demo.resolver;
 
-import com.example.demo.data.ErpPageData;
-import com.example.demo.filter.CollaboratorFilter;
-import com.example.demo.model.Collaborator;
-import com.example.demo.repository.CollaboratorRepository;
+import com.example.demo.model.JobRole;
+import com.example.demo.repository.JobRoleRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class CollaboratorResolver {
+public class JobRoleResolver {
 
-    private final CollaboratorRepository repository;
+    private final JobRoleRepository repository;
 
-    public CollaboratorResolver(CollaboratorRepository repository) {
+    public JobRoleResolver(JobRoleRepository repository) {
         this.repository = repository;
     }
 
     @QueryMapping
-    public Collaborator collaborator(@Argument Long id) {
+    public JobRole jobRole(@Argument Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public ErpPageData<Collaborator> collaborators(@Argument CollaboratorFilter filter) {
-        return ErpPageData.fromPage(repository.findAll(repository.specification(filter),
-                repository.pageable(filter)
-        ));
-    }
-
-    @QueryMapping
-    public Iterable<Collaborator> allCollaborators() {
+    public Iterable<JobRole> allJobRoles() {
         return repository.findAll();
     }
 
     @MutationMapping
-    public Collaborator createCollaborator(@Argument Collaborator collaborator) {
-        return repository.save(collaborator);
+    public JobRole createJobRole(@Argument JobRole jobRole) {
+        return repository.save(jobRole);
     }
 
     @MutationMapping
-    public Collaborator updateCollaborator(@Argument Collaborator collaborator) {
-        return repository.save(collaborator);
+    public JobRole updateJobRole(@Argument JobRole jobRole) {
+        return repository.save(jobRole);
     }
 
     @MutationMapping
-    public Boolean deleteCollaborator(@Argument Long id) {
+    public Boolean deleteJobRole(@Argument Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
         } else {
-            throw new RuntimeException("Collaborator not found");
+            throw new RuntimeException("JobRole not found");
         }
     }
 

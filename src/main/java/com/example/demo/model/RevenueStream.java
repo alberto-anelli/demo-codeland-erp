@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -26,13 +28,13 @@ public class RevenueStream extends ErpAuditableEntity<Long> {
     @Column(name = "days")
     private int days;
 
-    @Column(name = "notes")
-    private String notes;
-
     @ManyToOne
     @JoinColumn(name = "id_project", nullable = false, insertable = false, updatable = false)
     private Project project;
 
     @Column(name = "id_project")
     private Long idProject;
+
+    @OneToMany(mappedBy = "revenueStream", fetch = FetchType.LAZY)
+    private List<StreamAdvancement> streamAdvancements;
 }

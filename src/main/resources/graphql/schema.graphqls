@@ -1,9 +1,46 @@
 scalar Date
 scalar Month
 
+enum Direction {
+    ASC
+    DESC
+}
+
+input Sort {
+    direction: Direction
+    properties: [String]
+}
+
+input Pagination {
+    pageNumber: Int
+    pageSize: Int
+    sort: Sort
+}
+
+interface ManagementToolEntity {
+    id: ID!
+    notes: String
+}
+
+union ErpEntity = Collaborator | CollaboratorEconomics | ProjectGroup | Project | ExternalPartner | PartnerProject | DayProjectTracking | ProjectGroupYearEstimation | Company | RevenueStream | StreamAdvancement | ProjectGroupGenericCost
+
+type ErpPageData {
+    items: [ErpEntity]
+    pagination: PageInfo!
+}
+
+type PageInfo {
+    number: Int
+    totalPages: Int
+    numberOfElements: Int
+    totalElements: Int
+    size: Int
+    first: Boolean
+    last: Boolean
+}
+
 type DeleteResponse {
     ok: Boolean!
-    message: String
 }
 
 type Query {

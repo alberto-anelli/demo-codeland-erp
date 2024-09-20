@@ -15,16 +15,20 @@ import java.util.List;
 @Table(name = "COLLABORATORS")
 public class Collaborator extends ErpAuditableEntity<Long> {
 
-    @Serial
-    private static final long serialVersionUID = -1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_collaborator", length = 20)
+    @Column(name = "id_collaborator")
     private Long id;
 
     @Column(name = "code", length = 20)
     private String code;
+
+    @Column(name = "id_company", nullable = false)
+    private Long idCompany;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_company", referencedColumnName = "id_company", insertable = false, updatable = false)
+    private Company company;
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -35,20 +39,20 @@ public class Collaborator extends ErpAuditableEntity<Long> {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
-    @Column(name = "hiring_date", nullable = false)
-    private LocalDate hiringDate;
-
     @Column(name = "address", length = 100)
     private String address;
+
+    @Column(name = "city", length = 30)
+    private String city;
+
+    @Column(name = "region", length = 30)
+    private String region;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "phone", length = 30)
     private String phone;
-
-    @Column(name = "notes")
-    private String notes;
 
     @OneToMany(mappedBy = "collaborator", fetch = FetchType.LAZY)
     private List<CollaboratorEconomics> collaboratorEconomics;

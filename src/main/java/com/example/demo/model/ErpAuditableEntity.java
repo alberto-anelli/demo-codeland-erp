@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class ErpAuditableEntity<ID extends Serializable> extends ErpVersionedEntity<ID> {
+public abstract class ErpAuditableEntity<ID extends Serializable> extends ErpEntity<ID> {
     @Serial
     private static final long serialVersionUID = 1L;
 

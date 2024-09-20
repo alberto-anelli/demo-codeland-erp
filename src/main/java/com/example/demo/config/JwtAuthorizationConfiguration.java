@@ -28,10 +28,11 @@ public class JwtAuthorizationConfiguration {
 
     @Bean
     SecurityFilterChain customJwtSecurityChain(HttpSecurity http, JwtAuthorizationProperties props) throws Exception {
-        return http
+        return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        // .requestMatchers("/graphql", "/graphiql").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers( "/graphiql").permitAll()
+                        .requestMatchers( "/graphql").permitAll()
+                        .anyRequest().denyAll())
                 .oauth2Login(oauth2 -> oauth2.userInfoEndpoint(ep ->
                         ep.oidcUserService(customOidcUserService(props))))
                 .build();

@@ -20,9 +20,6 @@ public class ProjectGroup extends ErpAuditableEntity<Long> {
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "notes")
-    private String notes;
-
     @Column(name = "active")
     private Boolean active;
 

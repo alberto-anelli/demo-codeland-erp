@@ -1,10 +1,19 @@
 package com.example.demo.model;
 
-public enum JobRole {
-    DEVELOPER,
-    MANAGER,
-    ANALYST,
-    DESIGNER,
-    TESTER,
-    // Add other roles as required
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Entity
+@Table(name = "job_role")
+public class JobRole extends ErpAuditableEntity<Long> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_job_role")
+    Long id;
+
+    @Column(name = "name")
+    String name;
 }

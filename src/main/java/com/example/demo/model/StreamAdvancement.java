@@ -1,7 +1,21 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
-public class StreamAdvancement {
-  }
+@Table(name = "stream_advancement")
+public class StreamAdvancement extends ErpAuditableEntity<StreamAdvancementId> {
+    @EmbeddedId
+    private StreamAdvancementId id;
+    @Column(name = "percentage")
+    private Float percentage;
+    @ManyToOne
+    @JoinColumn(name = "id_revenue", nullable = false, insertable = false, updatable = false)
+    private RevenueStream revenueStream;
+}

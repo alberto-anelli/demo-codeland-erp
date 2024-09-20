@@ -2,12 +2,16 @@ package com.example.demo.config;
 
 import com.example.demo.scalar.MonthScalar;
 import graphql.scalars.ExtendedScalars;
+import org.springframework.boot.autoconfigure.graphql.GraphQlSourceBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.graphql.execution.RuntimeWiringConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Collections;
+import java.util.List;
 
 @EnableJpaAuditing
 @Configuration

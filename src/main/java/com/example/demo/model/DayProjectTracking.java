@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = DayProjectTracking.TABLE_NAME)
-//@IdClass(DayProjectTrackingId.class)
 public class DayProjectTracking extends ErpAuditableEntity<DayProjectTrackingId> {
 
     public static final String TABLE_NAME = "day_project_tracking";
@@ -40,7 +39,4 @@ public class DayProjectTracking extends ErpAuditableEntity<DayProjectTrackingId>
 
     @Column(name = "moreInfo", length = 100)
     private String moreInfo;
-
-    @Column(name = "notes")
-    private String notes;
 }

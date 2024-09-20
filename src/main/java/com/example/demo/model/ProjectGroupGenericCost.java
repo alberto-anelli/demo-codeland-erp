@@ -16,9 +16,6 @@ public class ProjectGroupGenericCost {
     @Column(name = "amount")
     private Float amount;
 
-    @Column(name = "notes")
-    private String notes;
-
     @ManyToOne
     @JoinColumn(name = "id_project_group", nullable = false, insertable = false, updatable = false)
     private ProjectGroup projectGroup;

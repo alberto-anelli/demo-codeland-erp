@@ -1,3 +1,22 @@
+input StreamAdvancementId {
+    idProject: ID!
+    month: Month!
+}
+
+type StreamAdvancement {
+    idProject: ID!
+    month: Month!
+    percentage: Float
+    notes: String
+}
+
+input StreamAdvancementInput {
+    idProject: ID
+    month: Month!
+    percentage: Float
+    notes: String
+}
+
 type RevenueStream {
     id: ID!
     title: String!
@@ -6,6 +25,7 @@ type RevenueStream {
     days: Int
     notes: String
     project: Project!
+    streamAdvancements: [StreamAdvancement]
 }
 
 input RevenueStreamInput {
@@ -21,10 +41,16 @@ input RevenueStreamInput {
 extend type Query {
     allRevenueStream: [RevenueStream]
     revenueStream(id: ID!): RevenueStream
+    allStreamAdvancement: [StreamAdvancement]
+    streamAdvancement(id: StreamAdvancementId): StreamAdvancement
 }
 
 extend type Mutation {
     createRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
     updateRevenueStream(revenueStream: RevenueStreamInput!): RevenueStream
     deleteRevenueStream(id: ID!): DeleteResponse
+
+    createStreamAdvancement(streamAdvancement: StreamAdvancementInput!): StreamAdvancement
+    updateStreamAdvancement(streamAdvancement: StreamAdvancementInput!): StreamAdvancement
+    deleteStreamAdvancement(id: ID!): DeleteResponse
 }

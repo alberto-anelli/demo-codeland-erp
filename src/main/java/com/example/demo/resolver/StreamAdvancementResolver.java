@@ -1,9 +1,9 @@
 package com.example.demo.resolver;
 
 import com.example.demo.bean.DeleteResponse;
-import com.example.demo.model.Project;
-import com.example.demo.model.RevenueStream;
-import com.example.demo.repository.RevenueStreamRepository;
+import com.example.demo.model.StreamAdvancement;
+import com.example.demo.model.StreamAdvancementId;
+import com.example.demo.model.StreamAdvancementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -13,39 +13,38 @@ import org.springframework.stereotype.Controller;
 import java.util.Optional;
 
 @Controller
-public class RevenueStreamResolver {
-    private RevenueStreamRepository revenueStreamRepository;
+public class StreamAdvancementResolver {
+    private final StreamAdvancementRepository streamAdvancementRepository;
 
     @Autowired
-    public RevenueStreamResolver(RevenueStreamRepository revenueStreamRepository) {
-        this.revenueStreamRepository = revenueStreamRepository;
+    public StreamAdvancementResolver(StreamAdvancementRepository streamAdvancementRepository) {
+        this.streamAdvancementRepository = streamAdvancementRepository;
     }
 
     @QueryMapping
-    public Iterable<RevenueStream> allRevenueStream() {
-        return revenueStreamRepository.findAll();
+    public Iterable<StreamAdvancement> allStreamAdvancement() {
+        return streamAdvancementRepository.findAll();
     }
 
     @QueryMapping
-    public RevenueStream revenueStream(@Argument Long id) {
-        return revenueStreamRepository.findById(id).orElse(null);
+    public StreamAdvancement streamAdvancement(@Argument StreamAdvancementId id) {
+        return streamAdvancementRepository.findById(id).orElse(null);
     }
 
     @MutationMapping
-    public RevenueStream createRevenueStream(@Argument RevenueStream revenueStream) {
-        return revenueStreamRepository.save(revenueStream);
+    public StreamAdvancement createStreamAdvancement(@Argument StreamAdvancement streamAdvancement) {
+        return streamAdvancementRepository.save(streamAdvancement);
     }
 
     @MutationMapping
-    public RevenueStream updateRevenueStream(@Argument RevenueStream revenueStream) {
-        return revenueStreamRepository.save(revenueStream);
+    public StreamAdvancement updateStreamAdvancement(@Argument StreamAdvancement streamAdvancement) {
+        return streamAdvancementRepository.save(streamAdvancement);
     }
 
     @MutationMapping
-    public DeleteResponse deleteRevenueStream(@Argument Long id) {
-        Optional<RevenueStream> revenueStream = revenueStreamRepository.findById(id);
-        if (revenueStream.isPresent()) {
-            revenueStreamRepository.deleteById(id);
+    public DeleteResponse deleteStreamAdvancement(@Argument StreamAdvancementId id) {
+        if (streamAdvancementRepository.findById(id).isPresent()) {
+            streamAdvancementRepository.deleteById(id);
             return new DeleteResponse(true);
         }
         return new DeleteResponse(false, "Project not found");

@@ -19,7 +19,4 @@ public class GenericCost extends ErpAuditableEntity<Long> {
     @Column(name = "amount", nullable = false)
     private Float amount;
 
-    @Column(name = "notes")
-    private String notes;
-
 }

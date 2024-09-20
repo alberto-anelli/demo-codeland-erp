@@ -1,29 +1,51 @@
+
+input ExternalPartnerFilter {
+    key: String
+    active: Boolean
+    pagination: Pagination
+}
+
 type ExternalPartner {
     id: ID!
-    title: String!
+    companyName: String!
+    skills: String
+    collaborationStartDate: Date
+    collaborationEndDate: Date
     vat: String
     address: String
     sdi: String
     phone: String
     email: String
+    referenceName: String!
+    referenceSurname: String!
+    referencePhone: String
+    referenceEmail: String
     notes: String
     partnerProjects: [PartnerProject]
 }
 
 input ExternalPartnerInput {
     id: ID
-    title: String!
+    companyName: String
+    skills: String
+    collaborationStartDate: Date
+    collaborationEndDate: Date
     vat: String
     address: String
     sdi: String
     phone: String
     email: String
+    referenceName: String
+    referenceSurname: String
+    referencePhone: String
+    referenceEmail: String
     notes: String
 }
 
 extend type Query {
     allExternalPartner: [ExternalPartner]
     externalPartner(id: ID!): ExternalPartner
+    externalPartners(filter: ExternalPartnerFilter): ErpPageData
 }
 
 extend type Mutation {

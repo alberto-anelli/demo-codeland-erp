@@ -19,9 +19,6 @@ public class ProjectGroupYearEstimation extends ErpAuditableEntity<ProjectGroupY
     @Column(name = "ebit")
     private Float ebit;
 
-    @Column(name = "notes")
-    private String notes;
-
     @ManyToOne
     @JoinColumn(name = "id_project_group", nullable = false, insertable = false, updatable = false)
     private ProjectGroup projectGroup;

@@ -1,62 +1,20 @@
-
-type Company {
-    id: ID!
-    name: String!
-}
-
 type JobRole {
     id: ID!
     name: String!
 }
 
-type Collaborator implements ManagementToolEntity {
-    id: ID!
-    code: String
-    company: Company
-    name: String!
-    surname: String!
-    dateOfBirth: Date!
-    address: String
-    city: String
-    region: String
-    email: String
-    phone: String
-    notes: String
-    collaboratorEconomics: [CollaboratorEconomics]
-    dayProjectTrackings: [DayProjectTracking]
-}
-
-input CollaboratorFilter {
-    key: String
-    idJobRole: ID
-    idCompany: ID
-    active: Boolean
-    pagination: Pagination
-}
-
-input CollaboratorInput {
+input JobRoleInput {
     id: ID
-    code: String
-    idCompany: ID
-    name: String!
-    surname: String!
-    dateOfBirth: Date!
-    address: String
-    city: String
-    region: String
-    email: String
-    phone: String
-    notes: String
+    name: String
 }
 
 extend type Query {
-    collaborator(id: ID!): Collaborator
-    collaborators(filter: CollaboratorFilter): ErpPageData
-    allCollaborators: [Collaborator]
+    jobRole(id: ID!): JobRole
+    allJobRoles: [JobRole]
 }
 
 extend type Mutation {
-    createCollaborator(collaborator: CollaboratorInput!): Collaborator
-    updateCollaborator(collaborator: CollaboratorInput!): Collaborator
-    deleteCollaborator(id: ID!): DeleteResponse
+    createJobRole(jobRole: JobRoleInput!): JobRole
+    updateJobRole(jobRole: JobRoleInput!): JobRole
+    deleteJobRole(id: ID!): DeleteResponse
 }

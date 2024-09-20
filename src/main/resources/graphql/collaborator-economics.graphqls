@@ -2,48 +2,52 @@ type CollaboratorEconomics {
     id: ID!
     idCollaborator: ID!
     collaborator: Collaborator!
-    jobRole: JobRole!
+    active: Boolean
+    versionFromDate: Date!
+    versionToDate: Date
+    hiringDate: Date!
     level: String
-    ral: Float!
-    ticket: Float!
-    fixedPrize: Float!
-    expectedExtraPrize: Float!
+    jobRole: JobRole
+    leavingDate: Date
+    smartWorkingDays: Int
+    ralBased: Boolean!
+    ral: Float
+    monthAddOn: Float
+    yearAddOn: Float
+    ticketRestaurant: Float
+    award: Float
     notes: String
 }
 
 input CollaboratorEconomicsInput {
     id: ID
     idCollaborator: ID!
-    jobRole: JobRole!
+    active: Boolean
+    versionFromDate: Date
+    versionToDate: Date
+    hiringDate: Date
     level: String
-    ral: Float!
-    ticket: Float!
-    fixedPrize: Float!
-    expectedExtraPrize: Float!
+    idJobRole: ID
+    leavingDate: Date
+    smartWorkingDays: Int
+    ralBased: Boolean
+    ral: Float
+    monthAddOn: Float
+    yearAddOn: Float
+    ticketRestaurant: Float
+    award: Float
     notes: String
 }
 
-enum JobRole {
-    DEVELOPER
-    MANAGER
-    ANALYST
-    DESIGNER
-    TESTER
-    # Add other roles as needed
-}
-
 extend type Query {
-    collaboratorEconomics(id: String!): CollaboratorEconomics
-    allCollaboratorEconomics: [CollaboratorEconomics!]!
-    collaboratorsByEconomicsCriteria(level: String!, ralBelow: Float!): [Collaborator]
+    getActiveVersion(idCollaborator: ID!): CollaboratorEconomics
+    getVersions(idCollaborator: ID!): [CollaboratorEconomics!]!
 }
 
 extend type Mutation {
-    createCollaboratorEconomics(
-        collaboratorEconomics: CollaboratorEconomicsInput!
-    ): CollaboratorEconomics
     updateCollaboratorEconomics(
         collaboratorEconomics: CollaboratorEconomicsInput!
+        versionDate: Date
     ): CollaboratorEconomics
     deleteCollaboratorEconomics(id: String!): DeleteResponse
 

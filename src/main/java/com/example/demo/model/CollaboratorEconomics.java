@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -25,40 +26,50 @@ public class CollaboratorEconomics extends ErpAuditableEntity<Long> {
     @Column(name = "id_collaborator")
     private Long idCollaborator;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "job_role", nullable = false)
-    private JobRole jobRole;
+    @Column(name = "active")
+    private Boolean active;
+
+    @Column(name = "version_from_date", nullable = false)
+    private LocalDate versionFromDate;
+
+    @Column(name = "version_to_date")
+    private LocalDate versionToDate;
+
+    @Column(name = "hiring_date", nullable = false)
+    private LocalDate hiringDate;
 
     @Column(name = "level", length = 1)
     private String level;
 
-    @Column(name = "ral", nullable = false)
-    private float ral;
+    @Column(name = "id_job_role", nullable = false)
+    private Long idJobRole;
 
-    @Column(name = "ticket", nullable = false)
-    private float ticket;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_job_role", referencedColumnName = "id_job_role", insertable = false, updatable = false)
+    private JobRole jobRole;
 
-    @Column(name = "fixed_prize", nullable = false)
-    private float fixedPrize;
+    @Column(name = "leaving_date")
+    private LocalDate leavingDate;
 
-    @Column(name = "expected_extra_prize", nullable = false)
-    private float expectedExtraPrize;
+    @Column(name = "smart_working_days")
+    private Integer smartWorkingDays;
 
-    @Column(name = "notes")
-    private String notes;
+    @Column(name = "ral_based", nullable = false)
+    private Boolean ralBased;
 
-    public CollaboratorEconomics(){}
+    @Column(name = "ral")
+    private Float ral;
 
-    public CollaboratorEconomics(Collaborator collaborator, JobRole jobRole,
-            String level, float ral, float ticket, float fixedPrize, float expectedExtraPrize, String notes) {
-        this.collaborator = collaborator;
-        this.jobRole = jobRole;
-        this.level = level;
-        this.ral = ral;
-        this.ticket = ticket;
-        this.fixedPrize = fixedPrize;
-        this.expectedExtraPrize = expectedExtraPrize;
-        this.notes = notes;
-    }
+    @Column(name = "month_add_on")
+    private Float monthAddOn;
+
+    @Column(name = "year_add_on")
+    private Float yearAddOn;
+
+    @Column(name = "ticket_restaurant")
+    private Float ticketRestaurant;
+
+    @Column(name = "award")
+    private Float award;
 
 }

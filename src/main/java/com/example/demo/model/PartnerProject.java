@@ -27,9 +27,6 @@ public class PartnerProject extends ErpAuditableEntity<PartnerProjectId>{
   @Column(name = "payment_date")
   private LocalDate paymentDate;
 
-  @Column(name = "notes")
-  private String notes;
-
   @ManyToOne
   @JoinColumn(name = "id_partner", nullable = false, insertable = false, updatable = false)
   private ExternalPartner externalPartner;

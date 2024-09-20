@@ -1,63 +1,59 @@
 package com.example.demo.resolver;
 
+import com.example.demo.data.ErpPageData;
+import com.example.demo.exception.EntityNotFoundException;
+import com.example.demo.filter.CollaboratorFilter;
 import com.example.demo.model.Collaborator;
 import com.example.demo.repository.CollaboratorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
-import java.util.Optional;
-
 @Controller
 public class CollaboratorResolver {
 
-    private final CollaboratorRepository collaboratorRepository;
+    private final CollaboratorRepository repository;
 
-    @Autowired
-    public CollaboratorResolver(CollaboratorRepository collaboratorRepository) {
-        this.collaboratorRepository = collaboratorRepository;
+    public CollaboratorResolver(CollaboratorRepository repository) {
+        this.repository = repository;
     }
 
     @QueryMapping
     public Collaborator collaborator(@Argument Long id) {
-        Optional<Collaborator> collaborator = collaboratorRepository.findById(id);
-        return collaborator.orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public List<Collaborator> allCollaborators() {
-        return collaboratorRepository.findAll();
+    public ErpPageData<Collaborator> collaborators(@Argument CollaboratorFilter filter) {
+        return ErpPageData.fromPage(repository.findAll(repository.specification(filter),
+                repository.pageable(filter)
+        ));
     }
 
-    @MutationMapping
-    public Collaborator createCollaborator(@Argument Collaborator collaborator) {
-        return collaboratorRepository.save(collaborator);
+    @QueryMapping
+    public Iterable<Collaborator> allCollaborators() {
+        return repository.findAll();
     }
+
+//    @MutationMapping
+//    public Collaborator createCollaborator(@Argument Collaborator collaborator) {
+//        return repository.save(collaborator);
+//    }
 
     @MutationMapping
     public Collaborator updateCollaborator(@Argument Collaborator collaborator) {
-        return collaboratorRepository.save(collaborator);
+        return repository.save(collaborator);
     }
 
     @MutationMapping
     public Boolean deleteCollaborator(@Argument Long id) {
-        if (collaboratorRepository.existsById(id)) {
-            collaboratorRepository.deleteById(id);
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
             return true;
         } else {
-            throw new RuntimeException("Collaborator not found");
+            throw new EntityNotFoundException("Collaborator not found");
         }
-    }
-
-    @QueryMapping
-    public List<Collaborator> collaboratorsByEconomicsCriteria(
-        @Argument String level,
-        @Argument Float ralBelow
-    ) {
-        return collaboratorRepository.findCollaboratorsByEconomicsCriteria(level, ralBelow);
     }
 
 }
