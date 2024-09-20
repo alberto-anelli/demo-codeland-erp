@@ -61,7 +61,7 @@ public class SecurityConfig {
             if(authentication != null && authentication.getPrincipal() instanceof Saml2AuthenticatedPrincipal principal) {
                 return new Saml2Authentication(principal, authentication.getSaml2Response(),
                         Objects.requireNonNull(principal.getAttribute(roleAttributeName)).stream().map(
-                            attribute -> new SimpleGrantedAuthority(attribute.toString())
+                            attribute -> new SimpleGrantedAuthority(rolePrefix + attribute.toString())
                 ).toList());
             }
             return authentication;
