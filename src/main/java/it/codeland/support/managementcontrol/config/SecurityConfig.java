@@ -1,5 +1,6 @@
 package it.codeland.support.managementcontrol.config;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,9 @@ import java.util.Objects;
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig {
 
+    @Value("${codeland.management.control.csrf}")
+    private String csrf;
+
     @Value("${codeland.management.control.role.prefix}")
     private String rolePrefix;
 
@@ -47,7 +51,11 @@ public class SecurityConfig {
                         .relyingPartyRegistrationRepository(relyingPartyRegistrationRepository) // Use automatically
                                                                                                 // configured SAML
                                                                                                 // repository
-                ).csrf(AbstractHttpConfigurer::disable);
+                );
+
+        if(StringUtils.equals("disable", csrf)) {
+            http.csrf(AbstractHttpConfigurer::disable);
+        }
 
         return http.build();
     }

@@ -40,11 +40,6 @@ public class CollaboratorResolver {
         return repository.findAll();
     }
 
-//    @MutationMapping
-//    public Collaborator createCollaborator(@Argument Collaborator collaborator) {
-//        return repository.save(collaborator);
-//    }
-
     @MutationMapping
     @Secured("ROLE_ADMIN")
     public Collaborator updateCollaborator(@Argument Collaborator collaborator) {

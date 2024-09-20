@@ -6,6 +6,7 @@ import it.codeland.support.managementcontrol.model.Collaborator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import it.codeland.support.managementcontrol.model.CollaboratorEconomics;
 import jakarta.persistence.criteria.Join;
@@ -18,6 +19,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CollaboratorRepository extends JpaRepository<Collaborator, Long>, JpaSpecificationExecutor<Collaborator>, ErpRepository<Collaborator> {
+
+    Optional<Collaborator> findByEmail(String email);
+
     default Specification<Collaborator> specification(CollaboratorFilter filter) {
         return (root, query, builder) -> {
             final List<Predicate> predicates = new ArrayList<>();
