@@ -8,6 +8,10 @@ import com.example.demo.repository.CollaboratorRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -19,6 +23,7 @@ public class CollaboratorResolver {
         this.repository = repository;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @QueryMapping
     public Collaborator collaborator(@Argument Long id) {
         return repository.findById(id).orElse(null);
