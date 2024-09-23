@@ -16,6 +16,10 @@ type CollaboratorEconomics {
     yearAddOn: Float
     ticketRestaurant: Float
     award: Float
+    ralGross: Float
+    ralGrossWithBenefits: Float
+    monthlyRalGross: Float
+    dailyRalGross: Float
     notes: String
 }
 

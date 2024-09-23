@@ -1,4 +1,11 @@
 package it.codeland.support.managementcontrol.filter;
 
-public class GenericCostFilter {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class GenericCostFilter extends ManagementControlFilter {
+    Long idArea;
+    String year;
 }

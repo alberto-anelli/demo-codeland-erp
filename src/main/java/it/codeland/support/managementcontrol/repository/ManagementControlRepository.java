@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-public interface ErpRepository<E> {
+public interface ManagementControlRepository<E> {
     default Pageable pageable(ManagementControlFilter filter) {
         if(filter == null || filter.getPagination() == null) {
             return PageRequest.of(0, 6, Sort.by(Sort.Direction.ASC, "id"));

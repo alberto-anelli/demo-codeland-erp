@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CollaboratorFilter extends ErpFilter {
-    String key;
+public class CollaboratorFilter extends ManagementControlFilter {
     Boolean active;
     Long idJobRole;
     Long idCompany;

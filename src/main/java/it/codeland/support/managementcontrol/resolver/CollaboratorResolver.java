@@ -1,6 +1,6 @@
 package it.codeland.support.managementcontrol.resolver;
 
-import it.codeland.support.managementcontrol.data.ErpPageData;
+import it.codeland.support.managementcontrol.data.ManagementControlPageData;
 import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
 import it.codeland.support.managementcontrol.filter.CollaboratorFilter;
 import it.codeland.support.managementcontrol.model.Collaborator;
@@ -28,8 +28,8 @@ public class CollaboratorResolver {
     }
 
     @QueryMapping
-    public ErpPageData<Collaborator> collaborators(@Argument CollaboratorFilter filter) {
-        return ErpPageData.fromPage(repository.findAll(repository.specification(filter),
+    public ManagementControlPageData<Collaborator> collaborators(@Argument CollaboratorFilter filter) {
+        return ManagementControlPageData.fromPage(repository.findAll(repository.specification(filter),
                 repository.pageable(filter)
         ));
     }

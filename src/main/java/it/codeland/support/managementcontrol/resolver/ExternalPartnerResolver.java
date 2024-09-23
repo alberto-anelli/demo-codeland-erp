@@ -1,7 +1,6 @@
 package it.codeland.support.managementcontrol.resolver;
 
-import it.codeland.support.managementcontrol.bean.DeleteResponse;
-import it.codeland.support.managementcontrol.data.ErpPageData;
+import it.codeland.support.managementcontrol.data.ManagementControlPageData;
 import it.codeland.support.managementcontrol.exception.EntityNotFoundException;
 import it.codeland.support.managementcontrol.filter.ExternalPartnerFilter;
 import it.codeland.support.managementcontrol.model.ExternalPartner;
@@ -33,8 +32,8 @@ public class ExternalPartnerResolver {
     }
 
     @QueryMapping
-    public ErpPageData<ExternalPartner> externalPartners(@Argument ExternalPartnerFilter filter) {
-        return ErpPageData.fromPage(repository.findAll(repository.specification(filter),
+    public ManagementControlPageData<ExternalPartner> externalPartners(@Argument ExternalPartnerFilter filter) {
+        return ManagementControlPageData.fromPage(repository.findAll(repository.specification(filter),
                 repository.pageable(filter)
         ));
     }

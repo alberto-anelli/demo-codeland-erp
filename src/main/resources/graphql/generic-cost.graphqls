@@ -1,50 +1,34 @@
-type Collaborator {
+type GenericCost {
     id: ID!
-    code: String
-    company: Company
-    name: String!
-    surname: String!
-    dateOfBirth: Date!
-    address: String
-    city: String
-    region: String
-    email: String
-    phone: String
+    description: String
+    area: Area!
+    year: String!
+    amount: Float!
     notes: String
-    collaboratorEconomics: [CollaboratorEconomics]
-    dayProjectTrackings: [DayProjectTracking]
 }
 
-input CollaboratorFilter {
+input GenericCostFilter {
     key: String
-    idJobRole: ID
-    idCompany: ID
-    active: Boolean
+    idArea: ID
+    year: String
     pagination: Pagination
 }
 
-input CollaboratorInput {
+input GenericCostInput {
     id: ID
-    code: String
-    idCompany: ID
-    name: String!
-    surname: String!
-    dateOfBirth: Date!
-    address: String
-    city: String
-    region: String
-    email: String
-    phone: String
+    description: String
+    idArea: ID
+    year: String
+    amount: Float
     notes: String
 }
 
 extend type Query {
-    collaborator(id: ID!): Collaborator
-    collaborators(filter: CollaboratorFilter): ErpPageData
-    allCollaborators: [Collaborator]
+    getGenericCost(id: ID!): GenericCost
+    findGenericCosts(filter: GenericCostFilter): ManagementControlPageData
 }
 
 extend type Mutation {
-    updateCollaborator(collaborator: CollaboratorInput!): Collaborator
-    deleteCollaborator(id: ID!): Boolean
+    updateGenericCost(genericCost: GenericCostInput!): GenericCost
+    deleteGenericCost(id: ID!): Boolean
 }

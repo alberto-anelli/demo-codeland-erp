@@ -21,7 +21,7 @@ public class PartnerProject extends ErpAuditableEntity<PartnerProjectId>{
   @Column(name = "description", nullable = false)
   private String description;
 
-  @Column(name = "invoiceNr", length = 20)
+  @Column(name = "invoice_nr", length = 20)
   private String invoiceNr;
 
   @Column(name = "payment_date")

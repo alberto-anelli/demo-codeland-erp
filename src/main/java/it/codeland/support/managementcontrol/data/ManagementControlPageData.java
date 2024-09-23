@@ -11,16 +11,16 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class ErpPageData<T> implements Serializable {
+public class ManagementControlPageData<T> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private ErpPaginationData pagination;
     private transient List<T> items;
 
-    public static final <T> ErpPageData<T> fromPage(Page<T> page) {
+    public static final <T> ManagementControlPageData<T> fromPage(Page<T> page) {
         Objects.requireNonNull(page, "page");
-        ErpPageData<T> resultSet = new ErpPageData<>();
+        ManagementControlPageData<T> resultSet = new ManagementControlPageData<>();
         resultSet.setPagination(ErpPaginationData.fromPage(page));
         resultSet.setItems(page.getContent());
         return resultSet;

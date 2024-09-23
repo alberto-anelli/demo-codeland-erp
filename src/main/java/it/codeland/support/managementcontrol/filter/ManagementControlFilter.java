@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ErpFilter {
+public class ManagementControlFilter {
     String key;
     Pagination pagination;
 }

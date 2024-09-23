@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ExternalPartnerFilter extends ErpFilter {
+public class ExternalPartnerFilter extends ManagementControlFilter {
     String key;
     Boolean active;
 }

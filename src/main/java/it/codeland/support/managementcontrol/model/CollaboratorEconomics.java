@@ -3,6 +3,7 @@ package it.codeland.support.managementcontrol.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 
@@ -11,7 +12,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "COLLABORATOR_ECONOMICS")
 public class CollaboratorEconomics extends ErpAuditableEntity<Long> {
-
+    @Value("${codeland.management.control.ral.multiplier}")
+    private Float ralMultiplier;
     // Getters and Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,5 +72,25 @@ public class CollaboratorEconomics extends ErpAuditableEntity<Long> {
 
     @Column(name = "award")
     private Float award;
+
+    @Transient
+    private Float ralGross;
+
+    @Transient
+    private Float ralGrossWithBenefits;
+
+    @Transient
+    private Float monthlyRalGross;
+
+    @Transient
+    private Float dailyRalGross;
+
+    @PostLoad
+    private void postLoad() {
+        this.ralGross = ral * 1.37f;
+        this.ralGrossWithBenefits = ralGross + monthAddOn * 12 + yearAddOn + ticketRestaurant * 220 + award;
+        this.monthlyRalGross = ralGrossWithBenefits / 12;
+        this.dailyRalGross = ralGrossWithBenefits / 220;
+    }
 
 }

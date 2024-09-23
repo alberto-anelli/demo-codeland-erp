@@ -40,7 +40,7 @@ input CollaboratorInput {
 
 extend type Query {
     collaborator(id: ID!): Collaborator
-    collaborators(filter: CollaboratorFilter): ErpPageData
+    collaborators(filter: CollaboratorFilter): ManagementControlPageData
     allCollaborators: [Collaborator]
 }
 

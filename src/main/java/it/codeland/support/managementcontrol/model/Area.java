@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "job_role")
-public class JobRole extends ErpAuditableEntity<Long> {
+@Table(name = "area")
+public class Area extends ErpAuditableEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_job_role")
+    @Column(name = "id_area")
     Long id;
 
     @Column(name = "name")

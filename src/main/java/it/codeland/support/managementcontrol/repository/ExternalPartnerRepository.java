@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface ExternalPartnerRepository extends JpaRepository<ExternalPartner, Long>, JpaSpecificationExecutor<ExternalPartner>, ErpRepository<ExternalPartner> {
+public interface ExternalPartnerRepository extends JpaRepository<ExternalPartner, Long>, JpaSpecificationExecutor<ExternalPartner>, ManagementControlRepository<ExternalPartner> {
 
     default Specification<ExternalPartner> specification(ExternalPartnerFilter filter) {
 //        ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAny()

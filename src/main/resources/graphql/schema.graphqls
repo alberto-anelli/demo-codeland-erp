@@ -24,7 +24,7 @@ interface ManagementToolEntity {
 
 union ErpEntity = Collaborator | CollaboratorEconomics | ProjectGroup | Project | ExternalPartner | PartnerProject | DayProjectTracking | ProjectGroupYearEstimation | Company | RevenueStream | StreamAdvancement | ProjectGroupGenericCost
 
-type ErpPageData {
+type ManagementControlPageData {
     items: [ErpEntity]
     pagination: PageInfo!
 }

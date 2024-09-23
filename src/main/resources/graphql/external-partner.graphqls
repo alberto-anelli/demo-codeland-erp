@@ -45,7 +45,7 @@ input ExternalPartnerInput {
 extend type Query {
     allExternalPartner: [ExternalPartner]
     externalPartner(id: ID!): ExternalPartner
-    externalPartners(filter: ExternalPartnerFilter): ErpPageData
+    externalPartners(filter: ExternalPartnerFilter): ManagementControlPageData
 }
 
 extend type Mutation {
