@@ -1,12 +1,12 @@
 package it.codeland.support.managementcontrol.repository;
 
-import it.codeland.support.managementcontrol.filter.ErpFilter;
+import it.codeland.support.managementcontrol.filter.ManagementControlFilter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 public interface ErpRepository<E> {
-    default Pageable pageable(ErpFilter filter) {
+    default Pageable pageable(ManagementControlFilter filter) {
         if(filter == null || filter.getPagination() == null) {
             return PageRequest.of(0, 6, Sort.by(Sort.Direction.ASC, "id"));
         }
